@@ -11,4 +11,6 @@ PY="${PYTHON:-python}"
 "$PY" experiments/run_experiments.py headline bayes_field leakage --seeds 3000
 "$PY" experiments/diagnose_valuation.py --seeds 300
 "$PY" experiments/horizon_check.py --seeds 800
+"$PY" experiments/audit_claims.py --games 800
 "$PY" experiments/make_figures.py
+"$PY" experiments/verify_claims.py

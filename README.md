@@ -67,9 +67,9 @@ Both tuned heuristics land near break-even. Beating them takes the whole inferen
 | Random | −173.1 [−176.2, −170.0] | −172.8 [−176.1, −169.6] | – |
 
 A full Bayesian agent among three copies of itself makes −$0.3 [−2.2, +1.7], which is
-zero within noise, as symmetry requires. (Seat effects were checked separately: over 800
-games with four identical agents, every seat's mean profit sits within noise of zero and
-every game is exactly zero-sum.)
+zero within noise, as symmetry requires. (Seat effects were checked separately with
+`experiments/audit_claims.py`: over 800 games with four identical agents, every seat's
+mean profit sits within noise of zero and every game is exactly zero-sum.)
 
 Against Bayesian opponents the mean-field agent out-earns the exact one while calling the
 goal suit slightly *better* (76.6% vs 74.4%). Accuracy across conditions is confounded,
@@ -97,7 +97,8 @@ over.
 The curve answers "what is this card worth to me if nobody else reacts?" Every player
 pricing off it bids for the same pivotal cards at the same moment, and the premium they
 pay exceeds the bonus they are chasing. Against identical Bayesian opponents, **72% of
-games end in a tie for most goal cards**, so the majority is usually shared anyway.
+games end in a tie for most goal cards** (`experiments/audit_claims.py`), so the majority
+is usually shared anyway.
 
 The effect grows with the length of the game: the flat valuer's edge goes $24.3 → $31.8 →
 $33.0 across 60, 120 and 240 turns. More trading means more chances to overpay.
@@ -322,8 +323,11 @@ about $25 — which is really the tuner telling me the quoting logic gives away 
   with the horizon, so that comparison is not horizon-free.
 - **Placements are treated as independent evidence.** A game produces about 210 of them,
   many being requotes of an unchanged view after a trade clears the book. The likelihood
-  multiplies them as if each were a fresh draw, which should make the posterior
-  overconfident. Measured, it is mildly so.
+  multiplies them as if each were a fresh draw, which ought to leave the posterior
+  overconfident. Measured over 800 games it is not: stated confidence matches how often
+  the agent is right to within 0.001 (`experiments/audit_claims.py`). Only the top bin is
+  optimistic, saying 0.99 where it is right 0.94. The mechanism is still wrong even though
+  the symptom does not show up at this scale.
 - **Single-card orders; integer chips.** A bonus that can't split evenly gives its odd
   chips to tied winners in seat order. Seats rotate across seeds, so no seat is favoured.
 
@@ -353,9 +357,10 @@ about $25 — which is really the tuner telling me the quoting logic gives away 
 - **Card accounting.** At points throughout a real game, the goal cards an agent holds
   plus the goal cards it believes opponents hold must equal the size of the suit, and no
   configuration it still believes in may be left with no consistent opponent holdings.
-  This one is here because it failed: beliefs used to clip impossible holdings up to zero,
-  which inflated opponents' assumed cards by about 2.4 and mostly hit the ablation
-  baselines, flattering the headline numbers they anchor.
+  This one is here because it failed. Beliefs used to clip impossible holdings up to zero,
+  which inflated opponents' assumed cards and mostly hit the ablation baselines, so the
+  headline numbers measured against them were flattered: order flow scored 42.9 chips a
+  game before the fix and 27.4 after, the exact joint 18.1 before and 12.6 after.
 
 ## Reproduce
 
@@ -372,3 +377,15 @@ The whole pipeline plays about 208,000 games and takes roughly an hour on ten co
 Tuning is most of it (144,000 games); the headline experiment alone is four minutes. A
 Bayesian decision costs about a millisecond, almost all of it the 286x286 pairing behind
 the joint deal.
+
+### Checking the numbers
+
+`experiments/verify_claims.py` runs last and checks all 35 figures quoted in this README
+against `results/*.json`, exiting non-zero if any of them no longer matches what the code
+produces. It also fails if chips stop being conserved across players, or if any seat shows
+a profit outside noise. A claim here cannot quietly drift away from its evidence.
+
+A game is a deterministic function of its seed, so a clone reproduces these figures
+exactly on the same library versions. The ones used are recorded in `results/audit.json`
+(Python 3.13.5, numpy 2.5.3, macOS); a different numpy could in principle shift a
+floating-point comparison and change a decision.
