@@ -1,0 +1,98 @@
+{
+  "seeds": 800,
+  "horizons": {
+    "60": {
+      "bayes": {
+        "profit": 21.1625
+      },
+      "bayes_hand_only": {
+        "profit": 3.37125,
+        "vs_bayes": {
+          "mean": -17.79125,
+          "lo": -21.603360577707278,
+          "hi": -13.979139422292725
+        }
+      },
+      "bayes_flat_value": {
+        "profit": 21.86,
+        "vs_bayes": {
+          "mean": 0.6975,
+          "lo": -3.3129143565380383,
+          "hi": 4.707914356538038
+        }
+      },
+      "bayes_mean_field": {
+        "profit": 14.99,
+        "vs_bayes": {
+          "mean": -6.1725,
+          "lo": -8.883649316943085,
+          "hi": -3.4613506830569163
+        }
+      }
+    },
+    "120": {
+      "bayes": {
+        "profit": 20.66
+      },
+      "bayes_hand_only": {
+        "profit": 2.88,
+        "vs_bayes": {
+          "mean": -17.78,
+          "lo": -21.75153234654769,
+          "hi": -13.808467653452311
+        }
+      },
+      "bayes_flat_value": {
+        "profit": 21.86,
+        "vs_bayes": {
+          "mean": 1.2,
+          "lo": -2.818877922342673,
+          "hi": 5.218877922342673
+        }
+      },
+      "bayes_mean_field": {
+        "profit": 14.17375,
+        "vs_bayes": {
+          "mean": -6.48625,
+          "lo": -9.351027066662251,
+          "hi": -3.62147293333775
+        }
+      }
+    },
+    "240": {
+      "bayes": {
+        "profit": 19.535
+      },
+      "bayes_hand_only": {
+        "profit": 2.55625,
+        "vs_bayes": {
+          "mean": -16.97875,
+          "lo": -21.329181524821657,
+          "hi": -12.628318475178347
+        }
+      },
+      "bayes_flat_value": {
+        "profit": 21.86,
+        "vs_bayes": {
+          "mean": 2.325,
+          "lo": -1.7841209202421222,
+          "hi": 6.434120920242123
+        }
+      },
+      "bayes_mean_field": {
+        "profit": 13.52375,
+        "vs_bayes": {
+          "mean": -6.01125,
+          "lo": -9.12456418367223,
+          "hi": -2.8979358163277693
+        }
+      }
+    }
+  },
+  "quiescence": {
+    "median_last_trade_turn": 16.0,
+    "p90_last_trade_turn": 31.0,
+    "share_trading_after_turn_60": 0.025,
+    "trades_per_game": 21.035
+  }
+}

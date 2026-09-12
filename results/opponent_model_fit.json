@@ -1,0 +1,366 @@
+{
+  "placements": 35720,
+  "games": 400,
+  "grid": [
+    {
+      "kind": "posterior",
+      "beta": 4,
+      "epsilon": 0.2,
+      "bits_per_placement": 0.07557704263558315
+    },
+    {
+      "kind": "posterior",
+      "beta": 6,
+      "epsilon": 0.3,
+      "bits_per_placement": 0.07512279457622745
+    },
+    {
+      "kind": "posterior",
+      "beta": 4,
+      "epsilon": 0.1,
+      "bits_per_placement": 0.07480402884903255
+    },
+    {
+      "kind": "posterior",
+      "beta": 8,
+      "epsilon": 0.5,
+      "bits_per_placement": 0.07451405361138747
+    },
+    {
+      "kind": "posterior",
+      "beta": 4,
+      "epsilon": 0.3,
+      "bits_per_placement": 0.0735233450501493
+    },
+    {
+      "kind": "posterior",
+      "beta": 6,
+      "epsilon": 0.5,
+      "bits_per_placement": 0.07232964217038176
+    },
+    {
+      "kind": "posterior",
+      "beta": 6,
+      "epsilon": 0.2,
+      "bits_per_placement": 0.06960041861471936
+    },
+    {
+      "kind": "posterior",
+      "beta": 12,
+      "epsilon": 0.5,
+      "bits_per_placement": 0.0680871584089526
+    },
+    {
+      "kind": "posterior",
+      "beta": 16,
+      "epsilon": 0.7,
+      "bits_per_placement": 0.06710559932402685
+    },
+    {
+      "kind": "posterior",
+      "beta": 12,
+      "epsilon": 0.7,
+      "bits_per_placement": 0.06624900097661644
+    },
+    {
+      "kind": "posterior",
+      "beta": 8,
+      "epsilon": 0.3,
+      "bits_per_placement": 0.06574789001638442
+    },
+    {
+      "kind": "posterior",
+      "beta": 4,
+      "epsilon": 0.5,
+      "bits_per_placement": 0.06267475142088783
+    },
+    {
+      "kind": "posterior",
+      "beta": 2,
+      "epsilon": 0.1,
+      "bits_per_placement": 0.0616779327138514
+    },
+    {
+      "kind": "posterior",
+      "beta": 8,
+      "epsilon": 0.7,
+      "bits_per_placement": 0.060944199755571804
+    },
+    {
+      "kind": "posterior",
+      "beta": 2,
+      "epsilon": 0.2,
+      "bits_per_placement": 0.057353173408269106
+    },
+    {
+      "kind": "posterior",
+      "beta": 6,
+      "epsilon": 0.1,
+      "bits_per_placement": 0.057264770618395175
+    },
+    {
+      "kind": "posterior",
+      "beta": 16,
+      "epsilon": 0.5,
+      "bits_per_placement": 0.05685636817301317
+    },
+    {
+      "kind": "posterior",
+      "beta": 6,
+      "epsilon": 0.7,
+      "bits_per_placement": 0.05460807522624596
+    },
+    {
+      "kind": "posterior",
+      "beta": 2,
+      "epsilon": 0.3,
+      "bits_per_placement": 0.0523776218982094
+    },
+    {
+      "kind": "posterior",
+      "beta": 8,
+      "epsilon": 0.2,
+      "bits_per_placement": 0.050226809786723864
+    },
+    {
+      "kind": "posterior",
+      "beta": 4,
+      "epsilon": 0.7,
+      "bits_per_placement": 0.04381910194053656
+    },
+    {
+      "kind": "posterior",
+      "beta": 2,
+      "epsilon": 0.5,
+      "bits_per_placement": 0.04056231034654067
+    },
+    {
+      "kind": "posterior",
+      "beta": 1,
+      "epsilon": 0.1,
+      "bits_per_placement": 0.03802482833564292
+    },
+    {
+      "kind": "posterior",
+      "beta": 1,
+      "epsilon": 0.2,
+      "bits_per_placement": 0.03448793027904754
+    },
+    {
+      "kind": "posterior",
+      "beta": 12,
+      "epsilon": 0.3,
+      "bits_per_placement": 0.03287504142343266
+    },
+    {
+      "kind": "posterior",
+      "beta": 1,
+      "epsilon": 0.3,
+      "bits_per_placement": 0.030782748861034843
+    },
+    {
+      "kind": "posterior",
+      "beta": 2,
+      "epsilon": 0.7,
+      "bits_per_placement": 0.026286799435367308
+    },
+    {
+      "kind": "posterior",
+      "beta": 1,
+      "epsilon": 0.5,
+      "bits_per_placement": 0.022864932397713172
+    },
+    {
+      "kind": "posterior",
+      "beta": 8,
+      "epsilon": 0.1,
+      "bits_per_placement": 0.022437486258462792
+    },
+    {
+      "kind": "posterior",
+      "beta": 1,
+      "epsilon": 0.7,
+      "bits_per_placement": 0.01425856481101084
+    },
+    {
+      "kind": "posterior",
+      "beta": 16,
+      "epsilon": 0.3,
+      "bits_per_placement": -0.0039216832469675675
+    },
+    {
+      "kind": "posterior",
+      "beta": 12,
+      "epsilon": 0.2,
+      "bits_per_placement": -0.005132092822853867
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.1,
+      "epsilon": 0.7,
+      "bits_per_placement": -0.03423515885237209
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.1,
+      "epsilon": 0.5,
+      "bits_per_placement": -0.05979789989907274
+    },
+    {
+      "kind": "posterior",
+      "beta": 16,
+      "epsilon": 0.2,
+      "bits_per_placement": -0.06405793565301379
+    },
+    {
+      "kind": "posterior",
+      "beta": 12,
+      "epsilon": 0.1,
+      "bits_per_placement": -0.06875341208919512
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.25,
+      "epsilon": 0.7,
+      "bits_per_placement": -0.080033142227915
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.1,
+      "epsilon": 0.3,
+      "bits_per_placement": -0.08796221561845
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.1,
+      "epsilon": 0.2,
+      "bits_per_placement": -0.10318130218887482
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.1,
+      "epsilon": 0.1,
+      "bits_per_placement": -0.11927985891926603
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.5,
+      "epsilon": 0.7,
+      "bits_per_placement": -0.13161360630573044
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.25,
+      "epsilon": 0.5,
+      "bits_per_placement": -0.14750535261128508
+    },
+    {
+      "kind": "posterior",
+      "beta": 16,
+      "epsilon": 0.1,
+      "bits_per_placement": -0.16455954276665016
+    },
+    {
+      "kind": "scarcity",
+      "beta": 1,
+      "epsilon": 0.7,
+      "bits_per_placement": -0.17835516483748107
+    },
+    {
+      "kind": "scarcity",
+      "beta": 2,
+      "epsilon": 0.7,
+      "bits_per_placement": -0.20862362053161465
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.25,
+      "epsilon": 0.3,
+      "bits_per_placement": -0.2312836607960576
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.5,
+      "epsilon": 0.5,
+      "bits_per_placement": -0.25530986820470924
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.25,
+      "epsilon": 0.2,
+      "bits_per_placement": -0.28210973218591884
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.25,
+      "epsilon": 0.1,
+      "bits_per_placement": -0.34216474031516825
+    },
+    {
+      "kind": "scarcity",
+      "beta": 1,
+      "epsilon": 0.5,
+      "bits_per_placement": -0.3614713057481704
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.5,
+      "epsilon": 0.3,
+      "bits_per_placement": -0.42740838403029013
+    },
+    {
+      "kind": "scarcity",
+      "beta": 2,
+      "epsilon": 0.5,
+      "bits_per_placement": -0.4365815526379743
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.5,
+      "epsilon": 0.2,
+      "bits_per_placement": -0.5457612024973546
+    },
+    {
+      "kind": "scarcity",
+      "beta": 1,
+      "epsilon": 0.3,
+      "bits_per_placement": -0.6384566241974081
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.5,
+      "epsilon": 0.1,
+      "bits_per_placement": -0.708096792847053
+    },
+    {
+      "kind": "scarcity",
+      "beta": 2,
+      "epsilon": 0.3,
+      "bits_per_placement": -0.7973028071002056
+    },
+    {
+      "kind": "scarcity",
+      "beta": 1,
+      "epsilon": 0.2,
+      "bits_per_placement": -0.8478452068641451
+    },
+    {
+      "kind": "scarcity",
+      "beta": 2,
+      "epsilon": 0.2,
+      "bits_per_placement": -1.0828830947575114
+    },
+    {
+      "kind": "scarcity",
+      "beta": 1,
+      "epsilon": 0.1,
+      "bits_per_placement": -1.173896684886279
+    },
+    {
+      "kind": "scarcity",
+      "beta": 2,
+      "epsilon": 0.1,
+      "bits_per_placement": -1.5549783665327312
+    }
+  ]
+}

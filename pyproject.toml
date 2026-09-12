@@ -1,0 +1,15 @@
+[project]
+name = "figgie"
+version = "0.1.0"
+description = "Figgie simulator with exact Bayesian inference over deck configurations"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "matplotlib>=3.8"]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "scipy>=1.11"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools]
+packages = ["figgie", "figgie.agents"]
