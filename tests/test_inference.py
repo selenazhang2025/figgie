@@ -194,3 +194,33 @@ def test_opponent_goal_count_distributions_are_normalised_and_shifted_by_trades(
     x = np.arange(q.shape[-1])
     assert ((q[clubs_goal, 0] * x).sum(axis=-1) > 3).all()  # seat 1 bought three clubs
     assert belief.min_dealt[2, CLUBS] == 3  # seat 2 sold three, so was dealt at least three
+
+
+def test_beliefs_account_for_every_goal_card():
+    """The goal cards I hold plus what I think opponents hold must equal the suit size.
+
+    A belief that loses track of this silently corrupts every valuation built on it, so
+    it is checked at points throughout a real game, not just at the end.
+    """
+    from figgie import valuation
+    from figgie.agents import AgentSpec, BayesianTrader
+    from figgie.deck import CONFIG_GOAL_COUNT
+
+    valuation.NO_SUPPORT.update(count=0, weight=0.0)
+    agents = [AgentSpec(BayesianTrader).build(seat, 100 + seat) for seat in range(4)]
+    game = Game(agents, seed=17, n_turns=60)
+    result = game.run()
+    tape = list(game.tape)
+
+    seat = 0
+    counts = np.arange(valuation.MAX_HELD + 1)
+    for cut in range(0, len(tape) + 1, max(1, len(tape) // 8)):
+        belief = BeliefState(seat, result.initial_hands[seat], Level0Model())
+        belief.update(tape[:cut])
+        held = np.asarray(result.initial_hands[seat]) + belief.flow[seat]
+        mine = held[CONFIG_GOAL]
+        opponents = (belief.opponent_goal_count_dists() * counts).sum(axis=-1).sum(axis=-1)
+        live = belief.config_posterior() > 0.01
+        np.testing.assert_allclose(opponents[live] + mine[live], CONFIG_GOAL_COUNT[live], atol=1e-6)
+    # Ruled-out configurations may have no consistent holdings; believed ones must not.
+    assert valuation.NO_SUPPORT["weight"] < 0.01, "a believed configuration had no consistent holdings"

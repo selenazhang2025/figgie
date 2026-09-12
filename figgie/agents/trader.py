@@ -20,6 +20,10 @@ class ValuationTrader(Agent):
     2. take the resting order with the largest surplus over value, if above `take_edge`
     3. cancel a quote that has drifted more than `requote_tolerance` from its target
     4. post a new bid or offer that improves the touch, at value -/+ an edge
+
+    Quotes carry up to `quote_jitter` of noise, shaved off the edge rather than added to
+    it, so a quote is never worse than the agent's own value. Without it every agent
+    quotes the same price for the same belief, the spread settles and trading stops.
     """
 
     name = "trader"
@@ -33,6 +37,7 @@ class ValuationTrader(Agent):
         min_edge: float = 1.0,
         requote_tolerance: int = 2,
         min_ask: int = 2,
+        quote_jitter: int = 3,
     ):
         super().__init__(seat, seed)
         self.take_edge = take_edge
@@ -40,6 +45,9 @@ class ValuationTrader(Agent):
         self.min_edge = min_edge
         self.requote_tolerance = requote_tolerance
         self.min_ask = min_ask
+        # Shave up to this much off the quoted edge at random, so quotes are not static
+        # and gains from trade keep appearing. Never crosses the agent's own value.
+        self.quote_jitter = quote_jitter
         self.protected: dict[int, int] = {}  # order_id -> last turn it is exempt from cancels
 
     def valuations(self, obs: Observation) -> tuple[np.ndarray, np.ndarray]:
@@ -91,7 +99,7 @@ class ValuationTrader(Agent):
         return action
 
     def _cancel_stale(self, obs, buy_v, sell_v) -> Action | None:
-        tol = self.requote_tolerance
+        tol = max(self.requote_tolerance, self.quote_jitter)  # don't cancel a quote its own jitter created
         for s in range(N_SUITS):
             target = self.bid_target(buy_v[s])
             for i, q in enumerate(obs.my_orders(s, Side.BUY)):
@@ -112,14 +120,18 @@ class ValuationTrader(Agent):
             best_ask = book.best_ask(exclude_player=self.seat)
             if not obs.my_orders(s, Side.BUY):
                 price = self.bid_target(buy_v[s])
+                if self.quote_jitter:
+                    price = min(price + self.rng.randint(0, self.quote_jitter), math.floor(buy_v[s]))
                 if best_ask is not None:
                     price = min(price, best_ask.price - 1)
                 if 1 <= price <= free_chips and (best_bid is None or price > best_bid.price):
                     candidates.append(PlaceOrder(s, Side.BUY, price))
             if not obs.my_orders(s, Side.SELL) and obs.free_cards(s) > 0:
                 price = self.ask_target(sell_v[s])
+                if self.quote_jitter:
+                    price = max(price - self.rng.randint(0, self.quote_jitter), math.ceil(sell_v[s]), 1)
                 if best_bid is not None:
                     price = max(price, best_bid.price + 1)
-                if best_ask is None or price < best_ask.price:
+                if price >= 1 and (best_ask is None or price < best_ask.price):
                     candidates.append(PlaceOrder(s, Side.SELL, price))
         return self.rng.choice(candidates) if candidates else None

@@ -176,3 +176,30 @@ def test_tape_view_is_read_only():
     assert not hasattr(tape, "append")
     with pytest.raises(TypeError):
         tape[0] = None  # type: ignore[index]
+
+
+def test_a_trade_clears_every_resting_order():
+    config = all_configs()[0]  # 12 spades, 8 clubs, 10 hearts, 10 diamonds
+    hands = [[3, 2, 3, 2], [3, 2, 2, 3], [3, 2, 3, 2], [3, 2, 2, 3]]
+    game = Game([Scripted() for _ in range(4)], seed=0, config=config, hands=hands, strict=True)
+    game.apply(0, PlaceOrder(0, Side.SELL, 7))
+    game.apply(1, PlaceOrder(1, Side.BUY, 5))
+    game.apply(2, PlaceOrder(2, Side.SELL, 9))
+    assert sum(len(b.bids) + len(b.asks) for b in game._books) == 3
+    game.apply(3, Take(0, Side.BUY))  # one trade wipes the whole market
+    assert sum(len(b.bids) + len(b.asks) for b in game._books) == 0
+    cleared = [e for e in game.tape if isinstance(e, OrderCancelled) and e.reason == "trade_clear"]
+    assert {(e.player, e.suit) for e in cleared} == {(1, 1), (2, 2)}
+    game.check_invariants()
+
+
+def test_books_survive_trades_when_clearing_is_disabled():
+    config = all_configs()[0]
+    hands = [[3, 2, 3, 2], [3, 2, 2, 3], [3, 2, 3, 2], [3, 2, 2, 3]]
+    game = Game([Scripted() for _ in range(4)], seed=0, config=config, hands=hands, strict=True,
+                clear_books_on_trade=False)
+    game.apply(0, PlaceOrder(0, Side.SELL, 7))
+    game.apply(1, PlaceOrder(1, Side.BUY, 5))
+    game.apply(3, Take(0, Side.BUY))
+    assert sum(len(b.bids) + len(b.asks) for b in game._books) == 1
+    game.check_invariants()

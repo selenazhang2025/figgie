@@ -82,7 +82,7 @@ def fig_profit() -> None:
     fig, axes = plt.subplots(1, len(panels), figsize=(5.4 * len(panels), 3.9), sharey=True, squeeze=False)
     titles = {"headline": "vs heuristics + hand-only Bayes", "bayes_field": "vs three full Bayesian agents"}
     for ax, (name, data) in zip(axes[0], panels):
-        _bars(ax, names, data["conditions"], "profit", highlight={"bayes"})
+        _bars(ax, names, data["conditions"], "profit", highlight={"bayes_flat_value"})
         ax.set_title(titles[name])
         ax.set_xlabel("Chips won per game (mean, 95% CI)")
     n = panels[0][1]["n_seeds"]

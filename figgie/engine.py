@@ -100,6 +100,7 @@ class Game:
         config: DeckConfig | None = None,
         hands: list[list[int]] | None = None,
         strict: bool = False,
+        clear_books_on_trade: bool = True,
     ):
         if len(agents) != N_PLAYERS:
             raise ValueError(f"need {N_PLAYERS} agents")
@@ -107,6 +108,8 @@ class Game:
         self.seed = seed
         self.n_turns = n_turns
         self.strict = strict
+        # Real Figgie: a trade cancels every resting order, so players must requote.
+        self.clear_books_on_trade = clear_books_on_trade
         self._agents = list(agents)
         self._config = config if config is not None else sample_config(deal_rng)
         dealt = hands if hands is not None else deal(self._config, deal_rng)
@@ -281,6 +284,11 @@ class Game:
                 fill.taker.order_id,
             )
         )
+        if self.clear_books_on_trade:
+            for book in self._books:
+                for order in [*book.bids, *book.asks]:
+                    book.cancel(order.order_id)
+                    self._on_removed(order, "trade_clear")
 
     def _emit(self, event: Event) -> None:
         self._tape.append(event)

@@ -23,6 +23,11 @@ import numpy as np
 from .deck import CARD_PAYOUT, CONFIG_BONUS, CONFIG_GOAL, CONFIG_GOAL_COUNT, N_SUITS, POT
 
 MAX_HELD = 10
+
+# Tracks how often a total had no support in the belief, and the largest share of the
+# posterior that was ever affected. Configurations the agent has already ruled out cost
+# nothing; "weight" is what matters, and the tests assert it stays negligible.
+NO_SUPPORT = {"count": 0, "weight": 0.0}
 _V = MAX_HELD + 1
 _N_OPP = 3
 
@@ -57,7 +62,7 @@ def _share_after_shift(k: int, delta: int) -> np.ndarray:
 
 
 @cache
-def share_tables(n_goal: int) -> np.ndarray:
+def share_tables(n_goal: int, conditioned: bool = True) -> np.ndarray:
     """(11, 4, 1331) linear functionals of the opponents' joint, indexed by my holding k.
 
     Contracting row [k, t] with an (unnormalised) joint over cells gives:
@@ -65,15 +70,20 @@ def share_tables(n_goal: int) -> np.ndarray:
       t=1: expected share now
       t=2: expected share after buying one card
       t=3: expected share after selling one card
+
+    `conditioned` restricts to holdings that add up to the goal cards not in my hand.
+    A belief that ignores order flow can rule that total out while still believing the
+    configuration, so the unconditioned tables are the fallback for those cases.
     """
     tables = np.zeros((_V, 4, len(CELLS)))
     for k in range(min(n_goal, MAX_HELD) + 1):
         others = n_goal - k
-        mask = (CELL_SUM == others).astype(np.float64)
+        mask = (CELL_SUM == others).astype(np.float64) if conditioned else np.ones(len(CELLS))
+        held_by_others = max(others, 1) if conditioned else np.maximum(CELL_SUM, 1)
         tables[k, 0] = mask
         tables[k, 1] = mask * SHARE[k]
         if k < n_goal:
-            seller_weight = CELLS.T / max(others, 1)  # (3, 1331)
+            seller_weight = CELLS.T / held_by_others  # (3, 1331)
             tables[k, 2] = mask * (seller_weight * _share_after_shift(k + 1, -1)).sum(axis=0)
         if k > 0:
             tables[k, 3] = mask * _share_after_shift(k - 1, +1).mean(axis=0)
@@ -86,18 +96,36 @@ def joint(q: np.ndarray) -> np.ndarray:
     return j.reshape(*q.shape[:-2], len(CELLS))
 
 
-def expected_shares(q: np.ndarray, n_goal: np.ndarray, k: np.ndarray) -> np.ndarray:
-    """Batched (..., 3) array of [share now, share after buying, share after selling]."""
+def expected_shares(
+    q: np.ndarray, n_goal: np.ndarray, k: np.ndarray, probs: np.ndarray | None = None
+) -> np.ndarray:
+    """Batched (..., 3) array of [share now, share after buying, share after selling].
+
+    `probs` is only used to record how much posterior weight hits the fallback below.
+    """
     n_goal = np.asarray(n_goal)
     k = np.minimum(np.asarray(k), n_goal)
     tables = np.stack([share_tables(int(n))[int(kk)] for n, kk in zip(n_goal.ravel(), k.ravel())])
     tables = tables.reshape(*n_goal.shape, 4, len(CELLS))
     moments = np.einsum("...n,...tn->...t", joint(q), tables)
     mass = moments[..., 0]
-    if np.any(mass <= 1e-300):
-        prior = np.einsum("n,...tn->...t", joint(np.broadcast_to(PRIOR_Q, (_N_OPP, _V))), tables)
-        moments = np.where((mass <= 1e-300)[..., None], prior, moments)
+    empty = mass <= 1e-300
+    if np.any(empty):
+        # This belief holds no opponent holdings that add up to the cards left outside my
+        # hand, which happens when a belief that ignores order flow still believes in a
+        # configuration the trades have ruled out. Keep what it does think opponents hold
+        # and drop only the total, rather than falling back on the deal and discarding it.
+        NO_SUPPORT["count"] += int(np.sum(empty))
+        if probs is not None:
+            NO_SUPPORT["weight"] = max(NO_SUPPORT["weight"], float(np.asarray(probs)[empty].sum()))
+        loose = np.stack([share_tables(int(n), False)[int(kk)] for n, kk in zip(n_goal.ravel(), k.ravel())])
+        loose = loose.reshape(*n_goal.shape, 4, len(CELLS))
+        moments = np.where(empty[..., None], np.einsum("...n,...tn->...t", joint(q), loose), moments)
         mass = moments[..., 0]
+        if np.any(mass <= 1e-300):  # the belief has no opponent holdings at all: use the deal
+            prior = np.einsum("n,...tn->...t", joint(np.broadcast_to(PRIOR_Q, (_N_OPP, _V))), tables)
+            moments = np.where((mass <= 1e-300)[..., None], prior, moments)
+            mass = moments[..., 0]
     return moments[..., 1:] / mass[..., None]
 
 
@@ -116,7 +144,7 @@ def card_values(
     hand = np.asarray(hand, dtype=np.int64)
     k = hand[CONFIG_GOAL]
     if inventory_aware:
-        s_now, s_buy, s_sell = np.moveaxis(expected_shares(q, CONFIG_GOAL_COUNT, k), -1, 0)
+        s_now, s_buy, s_sell = np.moveaxis(expected_shares(q, CONFIG_GOAL_COUNT, k, config_probs), -1, 0)
         mv_buy = CARD_PAYOUT + CONFIG_BONUS * (s_buy - s_now)
         mv_sell = CARD_PAYOUT + CONFIG_BONUS * (s_now - s_sell)
     else:

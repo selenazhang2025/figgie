@@ -1,154 +1,150 @@
-# Figgie: exact Bayesian inference and inventory-aware valuation
+# Figgie: exact Bayesian inference over a hidden deck
 
-Across 3,000 paired deals against tuned heuristic players, an agent that runs exact
+Across 3,000 paired deals against tuned heuristic opponents, an agent that runs exact
 Bayesian inference over the 12 possible decks, using its own hand and every opponent's
-order flow, makes **+$21.0 per game** [+18.6, +23.4]. It beats the best heuristic by
-**$26.5 per game** [+23.7, +29.3] on the same deals.
+order flow, makes **+$45.9 per game** [+43.7, +48.0] out of a $350 stack.
 
-Order flow accounts for most of that: the same agent using only its hand makes $17.9 less,
-and names the goal suit correctly in 38% of games instead of 57%.
+Order flow is what earns it. The same agent reasoning from its hand alone loses $27.4 a
+game by comparison, and names the goal suit in 38% of games against 71%.
 
-Two results went the other way from what I expected, and they turned out to be the more
-interesting half of the project:
-
-- the inventory-aware card valuation below is worth nothing against heuristic opponents,
-  and *costs* $17.6 per game when every opponent uses it too;
-- hiding what you believe from Bayesian opponents barely pays, and decoy bids backfire.
+The part I expected to matter most is the part that failed. A goal card's marginal value
+under the majority bonus is hump-shaped in how many you already hold, and pricing off
+that curve **costs $30.8 a game** against simply valuing every goal card at the flat
+average. That result got stronger, not weaker, each time I made the simulation more
+realistic or fixed a bug in my own code.
 
 ![Marginal value of a goal-suit card](figures/marginal_value.png)
 
-What a goal card is worth depends on what you already hold. With an 8-card goal
-suit, the third card is worth $85, because it usually moves you into the lead for the
-$120 bonus. The first card is worth $10, the second $15 and the fifth $11. A 10-card
-suit peaks at $72 for the fourth card. The Bayesian agent quotes off this curve, weighted
-by its posterior on which suit is the goal, so its bids move with its position. That
-curve is exactly right for one player trading against opponents whose holdings stay put.
-[Section 3](#3-why-the-inventory-aware-valuation-loses-to-a-flat-one) shows what happens
-when every player trades off it.
+The curve itself is real arithmetic. With an 8-card goal suit the third card is worth
+$85, because it usually moves you into the lead for the $120 bonus, while the first is
+worth $10 and the fifth $11. It is exactly right for one player trading against opponents
+whose holdings stay put. [Section 3](#3-why-the-marginal-value-curve-loses-money) is about
+what happens when everyone at the table prices off it.
 
 ---
 
 ## Results
 
-All numbers are chips won per game, out of a $350 starting stack. One focal agent plays
-against a fixed field of three opponents. Every row plays the **same 3,000 deals**: the
-seed fixes the deck, the hands, the turn order and every seat's private randomness.
-Differences are paired game by game. Brackets are 95% intervals.
+All numbers are chips won per game. One focal agent plays a fixed field of three
+opponents. Every row plays the **same 3,000 deals**: the seed fixes the deck, the hands,
+the turn order and every seat's private randomness. Differences are paired game by game,
+and brackets are 95% intervals.
 
 ### 1. Against tuned heuristics
 
-The field is the long-suit heuristic, the scarcity heuristic and a hand-only Bayesian.
+The field is the long-suit heuristic, the scarcity heuristic and a hand-only Bayesian,
+each with its own parameters tuned (see [benchmarks](#agents)).
 
-| Focal agent | Chips per game | vs full Bayes, same deals | Most-likely goal suit correct |
+| Focal agent | Chips per game | vs full Bayes, same deals | Goal suit correct |
 |---|---|---|---|
-| **Bayes, full** | **+21.0** [+18.6, +23.4] | – | **57.1%** |
-| Bayes, flat card value | +20.5 [+18.4, +22.7] | −0.4 [−2.5, +1.6] | 56.3% |
-| Bayes, mean-field order flow | +13.4 [+11.1, +15.8] | −7.6 [−9.0, −6.1] | 54.7% |
-| Bayes, hand only | +3.1 [+0.9, +5.3] | −17.9 [−19.9, −15.9] | 38.4% |
-| Long-suit heuristic | −5.5 [−8.3, −2.7] | −26.5 [−29.3, −23.7] | – |
-| Scarcity heuristic | −10.6 [−11.6, −9.5] | −31.6 [−33.8, −29.4] | – |
-| Random | −72.5 [−74.8, −70.2] | −93.5 [−96.2, −90.9] | – |
+| **Bayes, flat card value** | **+45.9** [+43.7, +48.0] | **+30.8** [+28.1, +33.5] | **78.2%** |
+| Bayes, full (marginal value) | +15.1 [+12.5, +17.7] | – | 70.9% |
+| Bayes, mean-field order flow | +2.5 [−0.0, +4.9] | −12.6 [−14.7, −10.5] | 64.5% |
+| Scarcity heuristic | −1.0 [−2.2, +0.2] | −16.1 [−18.6, −13.5] | – |
+| Long-suit heuristic | −1.9 [−4.2, +0.4] | −17.0 [−19.7, −14.2] | – |
+| Bayes, hand only | −12.3 [−14.6, −10.0] | −27.4 [−29.9, −24.9] | 38.4% |
+| Random | −169.4 [−171.9, −166.8] | −184.4 [−187.6, −181.2] | – |
 
-Reading each Bayesian variant against the full agent:
-- **Order flow is worth +$17.9** a game over hand-only inference.
-- **Summing over the joint deal exactly is worth +$7.6** over treating opponents' hands
+Three comparisons, each an ablation of one piece:
+
+- **Order flow is worth +$27.4** a game over inference from your hand alone.
+- **Summing over the joint deal exactly is worth +$12.6** over treating opponents' hands
   as independent.
-- **The inventory-aware valuation is worth nothing measurable** here (+$0.4).
+- **The marginal-value curve costs $30.8** against a flat value of pot/n per goal card.
+
+Both tuned heuristics land near break-even. Beating them takes the whole inference stack.
 
 ### 2. Against three full Bayesian agents
 
-| Focal agent | Chips per game | vs full Bayes, same deals | Most-likely goal suit correct |
+| Focal agent | Chips per game | vs full Bayes, same deals | Goal suit correct |
 |---|---|---|---|
-| Bayes, full | +0.4 [−1.5, +2.3] | – | 68.1% |
-| **Bayes, flat card value** | **+17.9** [+16.6, +19.3] | **+17.6** [+15.7, +19.4] | 64.4% |
-| Bayes, mean-field order flow | +9.0 [+6.6, +11.5] | +8.6 [+6.5, +10.8] | 68.3% |
-| Bayes, hand only | −11.0 [−13.3, −8.7] | −11.4 [−13.5, −9.3] | 38.4% |
-| Scarcity heuristic | −44.6 [−46.7, −42.6] | −45.0 [−47.5, −42.5] | – |
-| Long-suit heuristic | −62.6 [−65.1, −60.1] | −63.0 [−65.6, −60.3] | – |
-| Random | −140.4 [−143.0, −137.7] | −140.8 [−143.6, −138.0] | – |
+| **Bayes, flat card value** | **+27.7** [+26.2, +29.1] | **+27.9** [+25.9, +30.0] | 76.1% |
+| Bayes, mean-field order flow | +13.2 [+10.5, +15.9] | +13.5 [+10.9, +16.1] | 76.6% |
+| Bayes, full (marginal value) | −0.3 [−2.2, +1.7] | – | 74.4% |
+| Bayes, hand only | −40.7 [−43.2, −38.3] | −40.5 [−43.1, −37.8] | 38.4% |
+| Scarcity heuristic | −41.1 [−43.3, −38.9] | −40.8 [−43.5, −38.2] | – |
+| Long-suit heuristic | −58.5 [−60.8, −56.3] | −58.3 [−60.9, −55.6] | – |
+| Random | −173.1 [−176.2, −170.0] | −172.8 [−176.1, −169.6] | – |
 
-As a sanity check, a full Bayesian agent among three copies of itself makes +$0.4, which
-is zero within noise, as symmetry requires.
+A full Bayesian agent among three copies of itself makes −$0.3 [−2.2, +1.7], which is
+zero within noise, as symmetry requires. (Seat effects were checked separately: over 800
+games with four identical agents, every seat's mean profit sits within noise of zero and
+every game is exactly zero-sum.)
 
-The ranking flips here. A flat valuation (every goal card worth pot/n, $20 or $25) beats
-the inventory-aware one by $17.6, and the mean-field agent also out-earns the exact one
-even though the two call the goal suit equally well (68.3% vs 68.1%). Better beliefs don't
-become chips once the valuation layer is the weak link.
-
-The heuristics reorder too: scarcity loses less than long-suit, which chases the real goal
-suit into Bayesian competition.
+Against Bayesian opponents the mean-field agent out-earns the exact one while calling the
+goal suit slightly *better* (76.6% vs 74.4%). Accuracy across conditions is confounded,
+since a different focal agent produces a different game and therefore different evidence.
+The honest reading is that beliefs are not the binding constraint here: valuation is.
 
 ![Profit per game](figures/profit.png)
 
-### 3. Why the inventory-aware valuation loses to a flat one
+### 3. Why the marginal-value curve loses money
 
-These are 300 of the same deals, broken down by `experiments/diagnose_valuation.py`. The
-focal agent plays against three full Bayesian opponents. This is a tenth of the sample used
-above and the table reports means with no intervals, so it is evidence about the shape of
-the difference, not about its exact size.
+300 of the same deals, broken down by `experiments/diagnose_valuation.py`, focal agent
+against three full Bayesian opponents. A tenth of the sample above, and means without
+intervals, so treat it as the shape of the difference rather than its exact size.
 
-| Focal agent | Goal cards bought | Goal cards sold | Net on other suits | Wins the majority bonus |
+| Focal agent | Goal cards bought | Goal cards sold | Net on other suits | Wins the bonus |
 |---|---|---|---|---|
-| Bayes, inventory-aware | 1.50 per game at $15.0 | 1.41 at $15.4 | −$5.6 | 46% of games |
-| Bayes, flat value | 1.31 at **$8.1** | **1.84** at $14.1 | **+$22.7** | 11% |
+| Bayes, marginal value | 1.90 at **$23.0** | 2.06 at $23.0 | −$3.4 | **40%** of games |
+| Bayes, flat value | 1.56 at **$10.4** | 2.08 at $19.0 | **+$25.0** | 9% |
 
-The inventory-aware agent wins the bonus but pays for it. When all four players quote off
-the marginal-value curve they compete for the same pivotal cards: it takes the majority in
-46% of games, at $15 a goal card.
+The curve-following agent wins the majority far more often and pays $23 a card to do it.
+The flat valuer mostly declines the race: it buys at less than half the price, sells into
+the players fighting for the bonus, and earns $25 a game on the suits nobody is fighting
+over.
 
-The flat agent mostly stops competing. It buys goal cards at half the price, sells more of
-them to the players fighting over the majority, and makes $23 a game on the other suits.
+The curve answers "what is this card worth to me if nobody else reacts?" Every player
+pricing off it bids for the same pivotal cards at the same moment, and the premium they
+pay exceeds the bonus they are chasing. Against identical Bayesian opponents, **72% of
+games end in a tie for most goal cards**, so the majority is usually shared anyway.
 
-What the curve misses is competition. It answers what a card is worth to me if nobody else
-reacts, and the fix is to value a card in the game where opponents bid for the same
-threshold. That is the same equilibrium rabbit hole as a level-1 opponent model, so I
-stopped here.
+The effect grows with the length of the game: the flat valuer's edge goes $24.3 → $31.8 →
+$33.0 across 60, 120 and 240 turns. More trading means more chances to overpay.
 
-I haven't isolated where the non-goal-suit profit comes from. It is measured, not
-explained.
+Valuing a card in the game where opponents are also bidding for the same threshold is the
+fix, and it is the same equilibrium rabbit hole as a level-1 opponent model, so I stopped
+here. I have also not isolated where the flat agent's other-suit profit comes from; it is
+measured, not explained.
 
 ### 4. Order flow moves beliefs; your hand alone can't
 
 ![Belief convergence](figures/convergence.png)
 
-With hand-only inference, belief in the true goal suit is fixed at the deal: 0.29 on
-average, where 0.25 means no information. With order flow it climbs as trades print.
-Against the heuristic field it ends the game at 0.47 with the exact joint and 0.39 with
-mean-field. The curve stops at the trade count a quarter of games still reach, so the tail
-isn't a biased handful of busy games.
+Every agent starts at 0.291 on the true goal suit, where 0.25 is no information. Hand-only
+inference stays there for the whole game: a dealt hand says what it says. With order flow
+the belief climbs to 0.622 by the end, or 0.694 for the flat-value agent, which trades
+more and therefore sees more. Mean-field reaches 0.434.
 
 The trade-count axis mixes two effects: it counts the agent's own trades as well as
-everyone else's, and trades carry exact constraints (nobody can sell a card they don't
-hold) on top of behavioural signal.
+everyone else's, and trades carry exact constraints (nobody can sell a card they do not
+hold) on top of behavioural signal. The curve stops at the trade count a quarter of games
+still reach, so the tail is not a biased handful of busy games.
 
-### 5. Hiding what you believe: no measurable leakage cost here
+### 5. Hiding what you believe
 
 The hypothesis was that buying your goal suit loudly teaches Bayesian opponents what it
-is, so an agent that conceals its beliefs should do better. Both variants play against
-three full Bayesian opponents:
+is, so concealing your beliefs should pay. Both variants play three full Bayesian
+opponents:
+
 - **Slowed buying:** at most one buy every five turns in any suit it favours.
-- **Decoy bids:** $6 bids in suits it thinks are unlikely to be the goal, averaging 8.7
-  per game.
+- **Decoy bids:** $6 bids in suits it thinks are unlikely to be the goal, 9.3 per game.
 
-| Variant | Chips per game vs full Bayes, same deals | Change in opponents' final P(true goal) |
+| Variant | Chips per game vs full Bayes | Change in opponents' final P(true goal) |
 |---|---|---|
-| Slowed buying | +1.1 [+0.2, +2.0] | −0.003 [−0.009, +0.003] |
-| Decoy bids | −36.8 [−39.0, −34.5] | **+0.114** [+0.099, +0.129] |
-| Slowed + decoys | −36.3 [−38.6, −34.1] | +0.115 [+0.100, +0.130] |
+| Slowed buying | **+2.2** [+0.8, +3.6] | +0.005 [−0.003, +0.013] |
+| Decoy bids | −32.8 [−35.4, −30.2] | **+0.082** [+0.065, +0.099] |
+| Slowed + decoys | −31.0 [−33.6, −28.4] | +0.089 [+0.072, +0.106] |
 
-The data doesn't support that. Slowing down earns $1.1 a game on an interval that clears
-zero, but this experiment makes about ten comparisons with no correction for multiplicity,
-so a one-dollar effect at the edge of significance is not one I would defend. Either way
-opponents end up exactly as well informed, so whatever the gain is, it isn't coming from
-leaking less.
+Slowing down pays about two chips a game, but **not by leaking less**: opponents end up
+exactly as well informed either way. Patience gets better prices, which is a different
+mechanism than the one I set out to test.
 
 Decoys backfire outright. Bayesian opponents value unlikely suits at a dollar or two, so
-they hit a $6 bid at once and the decoy agent ends up buying junk. Every one of those
-trades is a hard constraint on someone's hand, which makes opponents *more* accurate
-(+0.11), and the decoy agent itself too (76% vs 68%).
-
-A decoy is only free if nobody fills it, and an order you never intend to be filled is a
-spoof. The legitimate version of concealment, slowing down, was worth about a dollar.
+they hit a $6 bid at once and the decoy agent buys junk. Every one of those trades is a
+hard constraint on somebody's hand, which makes opponents *more* accurate (+0.082) and the
+decoy agent itself more accurate too (81.0% against 74.4%). A decoy is only free if nobody
+fills it, and an order you never intend to have filled is a spoof.
 
 ![Information leakage](figures/leakage.png)
 
@@ -175,6 +171,7 @@ figgie/
   deck.py        configurations, the 286 possible 10-card suit counts, dealing
   market.py      one continuous double auction per suit: limit orders, cancels,
                  price-time priority, trades at the resting price, self-trade prevention
+                 (a trade then clears every book, as in real Figgie)
   protocol.py    the entire agent interface: Observation in, Action out, public events
   engine.py      turns, funding checks, settlement; owns every piece of hidden state
   inference.py   posterior over the 12 configurations (hand + order flow)
@@ -193,6 +190,10 @@ A test walks every field of real observations and fails if anything else appears
 Four minutes of trading are split into 120 turns. Each turn every player acts once, in a
 freshly shuffled order, so a game is a deterministic function of its seed. Resting orders
 lock the chips or card behind them, so a resting order can always be filled.
+
+As in real Figgie, a trade cancels every resting order in every suit, so players have to
+requote after each print. Without that rule the book settles into a spread nobody crosses
+and trading stops early.
 
 ### Inference
 
@@ -224,13 +225,15 @@ two opponents who each sold six spades together prove spades is the 12-card suit
 either one alone fits a 10-spade deck.
 
 **Fitting the opponent model.** β and ε are maximum-likelihood estimates. Every placement
-in 400 simulated games (35,720 placements) is scored against the placer's *true* dealt
+in 400 simulated games (83,843 placements) is scored against the placer's *true* dealt
 hand, which only the harness knows after the game.
 
 | Opponent model | Best fit | Information per placement vs uniform |
 |---|---|---|
-| "Bids on suits its own hand says are the goal" | β = 4, ε = 0.2 | **+0.076 bits** |
-| "Bids on whatever it holds least of" | β = 0.1, ε = 0.7 | −0.034 bits (worse than uniform at every setting) |
+| "Bids on suits its own hand says are the goal" | β = 4, ε = 0.3 | **+0.054 bits** |
+| "Bids on whatever it holds least of" | β = 0.1, ε = 0.7 | −0.033 bits (worse than uniform at every setting) |
+
+A placement is worth little on its own; a game supplies about 210 of them.
 
 The "bid what you hold least of" model is intuitive but wrong about this game. A long suit
 is evidence that suit has 12 cards, which makes its *partner* the goal. Scarcity in your
@@ -256,6 +259,10 @@ All non-random agents share one execution layer: cancel quotes that have gone ba
 anything priced better than value by at least $1, then quote at value minus or plus an
 edge. So the agents differ only in what they believe cards are worth.
 
+Quotes carry a few dollars of noise, shaved off the edge rather than added to it, so a
+quote is never worse than the agent's own value. Without it every agent with the same
+belief quotes the same price, and the market has nothing left to trade on.
+
 ### Agents
 
 | Agent | Beliefs | Card value |
@@ -269,21 +276,24 @@ edge. So the agents differ only in what they believe cards are worth.
 | `bayes` | hand + order flow, exact joint | inventory-aware |
 | `conceal_*` | as `bayes`, plus slowed buying and/or decoy bids | inventory-aware |
 
-The benchmarks are tuned so they aren't strawmen. Both heuristics' value parameters and the
-Bayesian agent's minimum offer price were grid-searched on 1,500 paired games, using seeds
-disjoint from evaluation. The field was two heuristics and a hand-only Bayesian.
+The benchmarks are tuned so they aren't strawmen. Every family is tuned over the **same**
+knobs by coordinate search: sweep one parameter with the others fixed, keep the best,
+repeat (70 configurations, 1,500 paired games each, seeds disjoint from evaluation).
 
-- **Scarcity heuristic:** best at goal value $4, other suits $4. That's a nearly flat
-  valuation, which makes it a cheap passive market maker. Trusting its goal pick more only
-  loses more.
-- **Long-suit heuristic:** best at goal value $12, other suits $4, an interior optimum.
-  A goal value of $16 costs $11 a game.
-- **Bayesian agent:** the minimum offer price plateaus from $6 to $10 (+$19.8 to +$20.6,
-  inside each other's intervals). The grid's best, $10, is used.
+Tuning one parameter for one family and not another quietly hands that family an edge. An
+earlier version of this swept the minimum offer price for the Bayesian agent alone and
+left the heuristics at the default, which flattered the Bayesian agent's headline number.
 
-The first sweep landed on the grid's edge for both heuristics, so the grid was widened
-until the optimum was interior. The shared lesson from tuning is that not giving away
-unwanted cards is worth more than being aggressive about the goal suit.
+| Family | Tuned to |
+|---|---|
+| `scarcity` | goal value $4, other suits $4, minimum offer $20 |
+| `long_suit` | goal value $8, other suits $4, minimum offer $20 |
+| `bayes` | minimum offer $25 |
+
+Every family lands on a high minimum offer, and that is the single most valuable knob for
+all of them: not giving away unwanted cards beats being aggressive about the goal suit. A
+$25 floor means the Bayesian agent almost never offers, since a goal card is worth at most
+about $25 — which is really the tuner telling me the quoting logic gives away edge.
 
 ## Where I stopped, and why
 
@@ -294,27 +304,32 @@ unwanted cards is worth more than being aggressive about the goal suit.
   no measurable cost to revealing beliefs against these opponents, and more accurate
   beliefs didn't earn more against Bayesians (mean-field vs exact). Both suggest the next
   dollar is in valuation, not deeper opponent modelling.
-- **Myopic valuation, and it matters.** Marginal value is computed at current holdings,
-  as if opponents won't react. Section 3 shows that assumption costs $17.6 a game when
-  everyone makes it. Valuing cards in equilibrium is the obvious next piece of work.
+- **Myopic valuation, and it is the main finding.** Marginal value is computed at current
+  holdings, as if opponents will not react. Section 3 shows that costs $30.8 a game
+  against heuristics and $27.9 against Bayesians. Valuing cards in equilibrium is the
+  obvious next piece of work, and the one I would do first.
 - **Price enters the likelihood as a sharpness multiplier.** It is not a generative model
   of prices.
 - **Decoy bids are close to spoofing.** Resting bids you'd rather not have filled are
   illegal in real markets, and they lost money here anyway. "Slowed buying" is the
   legitimate version of concealment.
-- **The market goes quiet early.** The median last trade is turn 16 of 120, only 2.5% of
-  games trade after turn 60, and a game sees about 21 trades. Real Figgie sees far more
-  trading in four minutes. Repeating the headline comparison at 60, 120 and 240 turns
-  barely moves it (`experiments/horizon_check.py`: order flow worth $17.0-$17.8 at every
-  horizon), but that is because the book is already quiescent, not because the result
-  survives a livelier market. Each agent quotes one price per suit and requotes only when
-  its valuation moves, which is what stalls trading.
+- **The market thins out before the end.** The median last trade is turn 50 of 120 and
+  about 30% of games still trade after turn 60, at about 29 trades a game. An earlier version
+  without book clearing or quote noise died at turn 16, and every conclusion here got
+  sharper once the market stayed alive, so the remaining quiet tail is worth treating as a
+  limitation rather than a settled market. Order flow is worth $27.8-$29.7 at 60, 120 and
+  240 turns (`experiments/horizon_check.py`), but the flat valuer's edge keeps growing
+  with the horizon, so that comparison is not horizon-free.
+- **Placements are treated as independent evidence.** A game produces about 210 of them,
+  many being requotes of an unchanged view after a trade clears the book. The likelihood
+  multiplies them as if each were a fresh draw, which should make the posterior
+  overconfident. Measured, it is mildly so.
 - **Single-card orders; integer chips.** A bonus that can't split evenly gives its odd
   chips to tied winners in seat order. Seats rotate across seeds, so no seat is favoured.
 
 ## Tests
 
-`pytest` runs 104 tests in about 10 seconds:
+`pytest` runs 108 tests in about 10 seconds:
 
 - **Conservation.** Cards and chips are conserved after *every* action of 20 random-agent
   games. Books are never crossed, and locked chips and cards always equal what the resting
@@ -335,6 +350,12 @@ unwanted cards is worth more than being aggressive about the goal suit.
 - **Valuation.** Expected share over all deals is 1/4. Buying from holdings matches
   re-conditioning. The marginal value curve is hump-shaped and lies between $10 and
   $10 + bonus.
+- **Card accounting.** At points throughout a real game, the goal cards an agent holds
+  plus the goal cards it believes opponents hold must equal the size of the suit, and no
+  configuration it still believes in may be left with no consistent opponent holdings.
+  This one is here because it failed: beliefs used to clip impossible holdings up to zero,
+  which inflated opponents' assumed cards by about 2.4 and mostly hit the ablation
+  baselines, flattering the headline numbers they anchor.
 
 ## Reproduce
 
@@ -345,6 +366,9 @@ experiments/reproduce.sh
 
 `experiments/reproduce.sh` runs, in order: tests, the opponent-model fit, benchmark
 tuning, the three paired experiments (3,000 seeds each), the valuation diagnostic, the
-horizon check and the figures. Results land in `results/*.json` and figures in `figures/`. On a 10-core laptop
-the mixed-field experiment takes 2 minutes and the all-Bayesian field 12; the all-Bayesian
-runs dominate the total.
+horizon check and the figures. Results land in `results/*.json` and figures in `figures/`.
+
+The whole pipeline plays about 208,000 games and takes roughly an hour on ten cores.
+Tuning is most of it (144,000 games); the headline experiment alone is four minutes. A
+Bayesian decision costs about a millisecond, almost all of it the 286x286 pairing behind
+the joint deal.

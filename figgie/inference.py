@@ -378,7 +378,16 @@ class BeliefState:
             _, w = self._hand_weights()  # (3, 12, 286)
             dealt_goal = HANDS[:, CONFIG_GOAL].T  # (12, 286)
             bought_goal = self.flow[self.opponents][:, CONFIG_GOAL]  # (3, 12)
-            held = np.clip(dealt_goal[None, :, :] + bought_goal[:, :, None], 0, MAX_GOAL_HELD)
+            held_raw = dealt_goal[None, :, :] + bought_goal[:, :, None]
+            # Nobody can hold a negative number of cards: a dealt hand that can't account
+            # for what this player has sold is impossible, whatever the inference model
+            # says. Clipping those up to zero instead would inflate opponents' holdings
+            # and can leave no hand at all consistent with the cards actually in play.
+            keep = held_raw >= 0
+            w = np.where(keep, w, 0.0)
+            total = w.sum(axis=-1, keepdims=True)
+            w = np.divide(w, total, out=np.zeros_like(w), where=total > 0)
+            held = np.clip(held_raw, 0, MAX_GOAL_HELD)
             n_opp = len(self.opponents)
             index = (np.arange(N_CONFIGS)[None, :, None] * n_opp + np.arange(n_opp)[:, None, None]) * (
                 MAX_GOAL_HELD + 1

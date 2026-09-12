@@ -1,366 +1,366 @@
 {
-  "placements": 35720,
+  "placements": 83843,
   "games": 400,
   "grid": [
     {
       "kind": "posterior",
       "beta": 4,
-      "epsilon": 0.2,
-      "bits_per_placement": 0.07557704263558315
+      "epsilon": 0.3,
+      "bits_per_placement": 0.05417556653065737
     },
     {
       "kind": "posterior",
       "beta": 6,
-      "epsilon": 0.3,
-      "bits_per_placement": 0.07512279457622745
+      "epsilon": 0.5,
+      "bits_per_placement": 0.0532700930665823
+    },
+    {
+      "kind": "posterior",
+      "beta": 4,
+      "epsilon": 0.2,
+      "bits_per_placement": 0.053205103686700596
+    },
+    {
+      "kind": "posterior",
+      "beta": 8,
+      "epsilon": 0.5,
+      "bits_per_placement": 0.05162529431807856
     },
     {
       "kind": "posterior",
       "beta": 4,
       "epsilon": 0.1,
-      "bits_per_placement": 0.07480402884903255
-    },
-    {
-      "kind": "posterior",
-      "beta": 8,
-      "epsilon": 0.5,
-      "bits_per_placement": 0.07451405361138747
-    },
-    {
-      "kind": "posterior",
-      "beta": 4,
-      "epsilon": 0.3,
-      "bits_per_placement": 0.0735233450501493
+      "bits_per_placement": 0.049116496027852403
     },
     {
       "kind": "posterior",
       "beta": 6,
-      "epsilon": 0.5,
-      "bits_per_placement": 0.07232964217038176
-    },
-    {
-      "kind": "posterior",
-      "beta": 6,
-      "epsilon": 0.2,
-      "bits_per_placement": 0.06960041861471936
-    },
-    {
-      "kind": "posterior",
-      "beta": 12,
-      "epsilon": 0.5,
-      "bits_per_placement": 0.0680871584089526
-    },
-    {
-      "kind": "posterior",
-      "beta": 16,
-      "epsilon": 0.7,
-      "bits_per_placement": 0.06710559932402685
-    },
-    {
-      "kind": "posterior",
-      "beta": 12,
-      "epsilon": 0.7,
-      "bits_per_placement": 0.06624900097661644
-    },
-    {
-      "kind": "posterior",
-      "beta": 8,
       "epsilon": 0.3,
-      "bits_per_placement": 0.06574789001638442
+      "bits_per_placement": 0.0491043398954255
     },
     {
       "kind": "posterior",
       "beta": 4,
       "epsilon": 0.5,
-      "bits_per_placement": 0.06267475142088783
+      "bits_per_placement": 0.04904946982290453
     },
     {
       "kind": "posterior",
       "beta": 2,
       "epsilon": 0.1,
-      "bits_per_placement": 0.0616779327138514
+      "bits_per_placement": 0.04823685777950701
+    },
+    {
+      "kind": "posterior",
+      "beta": 12,
+      "epsilon": 0.7,
+      "bits_per_placement": 0.04705157498550215
     },
     {
       "kind": "posterior",
       "beta": 8,
       "epsilon": 0.7,
-      "bits_per_placement": 0.060944199755571804
+      "bits_per_placement": 0.0460449308871326
     },
     {
       "kind": "posterior",
       "beta": 2,
       "epsilon": 0.2,
-      "bits_per_placement": 0.057353173408269106
-    },
-    {
-      "kind": "posterior",
-      "beta": 6,
-      "epsilon": 0.1,
-      "bits_per_placement": 0.057264770618395175
+      "bits_per_placement": 0.045593063156236
     },
     {
       "kind": "posterior",
       "beta": 16,
-      "epsilon": 0.5,
-      "bits_per_placement": 0.05685636817301317
+      "epsilon": 0.7,
+      "bits_per_placement": 0.0451669962830619
     },
     {
       "kind": "posterior",
       "beta": 6,
       "epsilon": 0.7,
-      "bits_per_placement": 0.05460807522624596
+      "bits_per_placement": 0.042810009850192746
     },
     {
       "kind": "posterior",
       "beta": 2,
       "epsilon": 0.3,
-      "bits_per_placement": 0.0523776218982094
+      "bits_per_placement": 0.042244450934777314
+    },
+    {
+      "kind": "posterior",
+      "beta": 12,
+      "epsilon": 0.5,
+      "bits_per_placement": 0.04139532504517397
+    },
+    {
+      "kind": "posterior",
+      "beta": 6,
+      "epsilon": 0.2,
+      "bits_per_placement": 0.039955788872716565
     },
     {
       "kind": "posterior",
       "beta": 8,
-      "epsilon": 0.2,
-      "bits_per_placement": 0.050226809786723864
+      "epsilon": 0.3,
+      "bits_per_placement": 0.03599183327024201
     },
     {
       "kind": "posterior",
       "beta": 4,
       "epsilon": 0.7,
-      "bits_per_placement": 0.04381910194053656
+      "bits_per_placement": 0.035774784700471345
     },
     {
       "kind": "posterior",
       "beta": 2,
       "epsilon": 0.5,
-      "bits_per_placement": 0.04056231034654067
+      "bits_per_placement": 0.033556152069639224
     },
     {
       "kind": "posterior",
       "beta": 1,
       "epsilon": 0.1,
-      "bits_per_placement": 0.03802482833564292
+      "bits_per_placement": 0.031306586265352744
+    },
+    {
+      "kind": "posterior",
+      "beta": 16,
+      "epsilon": 0.5,
+      "bits_per_placement": 0.029057431222885184
     },
     {
       "kind": "posterior",
       "beta": 1,
       "epsilon": 0.2,
-      "bits_per_placement": 0.03448793027904754
-    },
-    {
-      "kind": "posterior",
-      "beta": 12,
-      "epsilon": 0.3,
-      "bits_per_placement": 0.03287504142343266
+      "bits_per_placement": 0.02857747509104823
     },
     {
       "kind": "posterior",
       "beta": 1,
       "epsilon": 0.3,
-      "bits_per_placement": 0.030782748861034843
+      "bits_per_placement": 0.025666596095155383
+    },
+    {
+      "kind": "posterior",
+      "beta": 6,
+      "epsilon": 0.1,
+      "bits_per_placement": 0.02341320785370036
     },
     {
       "kind": "posterior",
       "beta": 2,
       "epsilon": 0.7,
-      "bits_per_placement": 0.026286799435367308
+      "bits_per_placement": 0.02224887934379947
     },
     {
       "kind": "posterior",
       "beta": 1,
       "epsilon": 0.5,
-      "bits_per_placement": 0.022864932397713172
+      "bits_per_placement": 0.019295645883611587
+    },
+    {
+      "kind": "posterior",
+      "beta": 8,
+      "epsilon": 0.2,
+      "bits_per_placement": 0.01711027514019618
+    },
+    {
+      "kind": "posterior",
+      "beta": 1,
+      "epsilon": 0.7,
+      "bits_per_placement": 0.0121747974164064
+    },
+    {
+      "kind": "posterior",
+      "beta": 12,
+      "epsilon": 0.3,
+      "bits_per_placement": 0.00225246576565789
     },
     {
       "kind": "posterior",
       "beta": 8,
       "epsilon": 0.1,
-      "bits_per_placement": 0.022437486258462792
-    },
-    {
-      "kind": "posterior",
-      "beta": 1,
-      "epsilon": 0.7,
-      "bits_per_placement": 0.01425856481101084
+      "bits_per_placement": -0.014692281315561297
     },
     {
       "kind": "posterior",
       "beta": 16,
       "epsilon": 0.3,
-      "bits_per_placement": -0.0039216832469675675
+      "bits_per_placement": -0.030965786676787076
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.1,
+      "epsilon": 0.7,
+      "bits_per_placement": -0.033136131274882116
     },
     {
       "kind": "posterior",
       "beta": 12,
       "epsilon": 0.2,
-      "bits_per_placement": -0.005132092822853867
-    },
-    {
-      "kind": "scarcity",
-      "beta": 0.1,
-      "epsilon": 0.7,
-      "bits_per_placement": -0.03423515885237209
+      "bits_per_placement": -0.036603345904781176
     },
     {
       "kind": "scarcity",
       "beta": 0.1,
       "epsilon": 0.5,
-      "bits_per_placement": -0.05979789989907274
+      "bits_per_placement": -0.05938405622970804
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.25,
+      "epsilon": 0.7,
+      "bits_per_placement": -0.07016363223900343
     },
     {
       "kind": "posterior",
       "beta": 16,
       "epsilon": 0.2,
-      "bits_per_placement": -0.06405793565301379
+      "bits_per_placement": -0.08790037889052768
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.1,
+      "epsilon": 0.3,
+      "bits_per_placement": -0.08993082260803989
     },
     {
       "kind": "posterior",
       "beta": 12,
       "epsilon": 0.1,
-      "bits_per_placement": -0.06875341208919512
-    },
-    {
-      "kind": "scarcity",
-      "beta": 0.25,
-      "epsilon": 0.7,
-      "bits_per_placement": -0.080033142227915
-    },
-    {
-      "kind": "scarcity",
-      "beta": 0.1,
-      "epsilon": 0.3,
-      "bits_per_placement": -0.08796221561845
-    },
-    {
-      "kind": "scarcity",
-      "beta": 0.1,
-      "epsilon": 0.2,
-      "bits_per_placement": -0.10318130218887482
-    },
-    {
-      "kind": "scarcity",
-      "beta": 0.1,
-      "epsilon": 0.1,
-      "bits_per_placement": -0.11927985891926603
+      "bits_per_placement": -0.10096504100665075
     },
     {
       "kind": "scarcity",
       "beta": 0.5,
       "epsilon": 0.7,
-      "bits_per_placement": -0.13161360630573044
+      "bits_per_placement": -0.10354672929762601
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.1,
+      "epsilon": 0.2,
+      "bits_per_placement": -0.1072650268593921
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.1,
+      "epsilon": 0.1,
+      "bits_per_placement": -0.12637236753502604
+    },
+    {
+      "kind": "scarcity",
+      "beta": 1,
+      "epsilon": 0.7,
+      "bits_per_placement": -0.12970364216486352
     },
     {
       "kind": "scarcity",
       "beta": 0.25,
       "epsilon": 0.5,
-      "bits_per_placement": -0.14750535261128508
+      "bits_per_placement": -0.1342082571330947
+    },
+    {
+      "kind": "scarcity",
+      "beta": 2,
+      "epsilon": 0.7,
+      "bits_per_placement": -0.14598982394315796
     },
     {
       "kind": "posterior",
       "beta": 16,
       "epsilon": 0.1,
-      "bits_per_placement": -0.16455954276665016
-    },
-    {
-      "kind": "scarcity",
-      "beta": 1,
-      "epsilon": 0.7,
-      "bits_per_placement": -0.17835516483748107
-    },
-    {
-      "kind": "scarcity",
-      "beta": 2,
-      "epsilon": 0.7,
-      "bits_per_placement": -0.20862362053161465
-    },
-    {
-      "kind": "scarcity",
-      "beta": 0.25,
-      "epsilon": 0.3,
-      "bits_per_placement": -0.2312836607960576
+      "bits_per_placement": -0.18312654751794313
     },
     {
       "kind": "scarcity",
       "beta": 0.5,
       "epsilon": 0.5,
-      "bits_per_placement": -0.25530986820470924
+      "bits_per_placement": -0.2085359423863953
     },
     {
       "kind": "scarcity",
       "beta": 0.25,
-      "epsilon": 0.2,
-      "bits_per_placement": -0.28210973218591884
-    },
-    {
-      "kind": "scarcity",
-      "beta": 0.25,
-      "epsilon": 0.1,
-      "bits_per_placement": -0.34216474031516825
+      "epsilon": 0.3,
+      "bits_per_placement": -0.21998608172727527
     },
     {
       "kind": "scarcity",
       "beta": 1,
       "epsilon": 0.5,
-      "bits_per_placement": -0.3614713057481704
+      "bits_per_placement": -0.27256925004740523
     },
     {
       "kind": "scarcity",
-      "beta": 0.5,
-      "epsilon": 0.3,
-      "bits_per_placement": -0.42740838403029013
+      "beta": 0.25,
+      "epsilon": 0.2,
+      "bits_per_placement": -0.27633033041452915
     },
     {
       "kind": "scarcity",
       "beta": 2,
       "epsilon": 0.5,
-      "bits_per_placement": -0.4365815526379743
+      "bits_per_placement": -0.31689016438356604
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.25,
+      "epsilon": 0.1,
+      "bits_per_placement": -0.34940215072654296
+    },
+    {
+      "kind": "scarcity",
+      "beta": 0.5,
+      "epsilon": 0.3,
+      "bits_per_placement": -0.36350216457749374
     },
     {
       "kind": "scarcity",
       "beta": 0.5,
       "epsilon": 0.2,
-      "bits_per_placement": -0.5457612024973546
+      "bits_per_placement": -0.47645788472606
     },
     {
       "kind": "scarcity",
       "beta": 1,
       "epsilon": 0.3,
-      "bits_per_placement": -0.6384566241974081
+      "bits_per_placement": -0.4977496511723378
+    },
+    {
+      "kind": "scarcity",
+      "beta": 2,
+      "epsilon": 0.3,
+      "bits_per_placement": -0.5965272134294128
     },
     {
       "kind": "scarcity",
       "beta": 0.5,
       "epsilon": 0.1,
-      "bits_per_placement": -0.708096792847053
-    },
-    {
-      "kind": "scarcity",
-      "beta": 2,
-      "epsilon": 0.3,
-      "bits_per_placement": -0.7973028071002056
+      "bits_per_placement": -0.6430573696849884
     },
     {
       "kind": "scarcity",
       "beta": 1,
       "epsilon": 0.2,
-      "bits_per_placement": -0.8478452068641451
+      "bits_per_placement": -0.6735824801898997
     },
     {
       "kind": "scarcity",
       "beta": 2,
       "epsilon": 0.2,
-      "bits_per_placement": -1.0828830947575114
+      "bits_per_placement": -0.8226436334645933
     },
     {
       "kind": "scarcity",
       "beta": 1,
       "epsilon": 0.1,
-      "bits_per_placement": -1.173896684886279
+      "bits_per_placement": -0.9570215495553683
     },
     {
       "kind": "scarcity",
       "beta": 2,
       "epsilon": 0.1,
-      "bits_per_placement": -1.5549783665327312
+      "bits_per_placement": -1.2030295014165802
     }
   ]
 }

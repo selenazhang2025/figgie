@@ -1,3 +1,6 @@
+import math
+
+import numpy as np
 import pytest
 
 from figgie.agents import (
@@ -7,9 +10,12 @@ from figgie.agents import (
     LongSuitHeuristic,
     RandomAgent,
     ScarcityHeuristic,
+    ValuationTrader,
 )
 from figgie.deck import CLUBS, DIAMONDS, POT, STARTING_CHIPS
 from figgie.engine import Game
+from figgie.market import Side
+from figgie.protocol import BookView, Observation, PlaceOrder, TapeView
 from figgie.tournament import FocalRecord, focal_table, paired_diff_ci, play, run_focal
 
 TABLE = [
@@ -66,3 +72,40 @@ def test_paired_diff_ci():
 
     est = paired_diff_ci([rec(0, 10), rec(1, 20)], [rec(1, 5), rec(0, 4)])
     assert est.mean == pytest.approx(10.5)
+
+
+class FixedValueTrader(ValuationTrader):
+    """Quotes against constant valuations, so the jitter is the only thing that varies."""
+
+    def __init__(self, seat, seed, buy, sell, **kwargs):
+        super().__init__(seat, seed, **kwargs)
+        self._buy, self._sell = np.array(buy, float), np.array(sell, float)
+
+    def valuations(self, obs):
+        return self._buy, self._sell
+
+
+def empty_observation():
+    return Observation(
+        player=0, turn=0, n_turns=10, initial_hand=(3, 3, 2, 2), hand=(3, 3, 2, 2), chips=300,
+        books=tuple(BookView((), ()) for _ in range(4)), tape=TapeView([]), hand_sizes=(10, 10, 10, 10),
+    )
+
+
+def test_quote_jitter_never_crosses_the_agents_own_value():
+    buy = [12.4, 0.5, 7.0, 0.0]  # a suit believed worthless must still quote a legal price
+    sell = [11.1, 0.2, 6.0, 0.0]
+    obs = empty_observation()
+    seen = set()
+    for seed in range(200):
+        agent = FixedValueTrader(0, seed, buy, sell, quote_jitter=5)
+        action = agent._best_quote(obs, agent._buy, agent._sell)
+        if action is None:
+            continue
+        assert isinstance(action, PlaceOrder)
+        seen.add(action.price)
+        if action.side is Side.BUY:
+            assert 1 <= action.price <= math.floor(buy[action.suit])
+        else:
+            assert action.price >= math.ceil(sell[action.suit])
+    assert len(seen) > 1, "jitter should produce more than one price"

@@ -7,24 +7,24 @@
   ],
   "conditions": {
     "bayes": {
-      "profit": -2.006666666666667,
-      "goal_bought_per_game": 1.5033333333333334,
-      "goal_buy_price": 14.98669623059867,
-      "goal_sold_per_game": 1.41,
-      "goal_sell_price": 15.354609929078014,
-      "other_suits_net_per_game": -5.593333333333334,
-      "goal_held": 2.486666666666667,
-      "bonus_won_rate": 0.46
+      "profit": -1.8533333333333333,
+      "goal_bought_per_game": 1.8966666666666667,
+      "goal_buy_price": 23.01757469244288,
+      "goal_sold_per_game": 2.0566666666666666,
+      "goal_sell_price": 23.035656401944895,
+      "other_suits_net_per_game": -3.44,
+      "goal_held": 2.2333333333333334,
+      "bonus_won_rate": 0.4033333333333333
     },
     "bayes_flat_value": {
-      "profit": 14.343333333333334,
-      "goal_bought_per_game": 1.31,
-      "goal_buy_price": 8.089058524173028,
-      "goal_sold_per_game": 1.8366666666666667,
-      "goal_sell_price": 14.12885662431942,
-      "other_suits_net_per_game": 22.69,
-      "goal_held": 1.8666666666666667,
-      "bonus_won_rate": 0.10666666666666667
+      "profit": 23.363333333333333,
+      "goal_bought_per_game": 1.56,
+      "goal_buy_price": 10.412393162393162,
+      "goal_sold_per_game": 2.0833333333333335,
+      "goal_sell_price": 18.9872,
+      "other_suits_net_per_game": 25.016666666666666,
+      "goal_held": 1.87,
+      "bonus_won_rate": 0.09
     }
   }
 }

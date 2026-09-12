@@ -5,27 +5,99 @@
     "scarcity",
     "bayes_hand_only"
   ],
+  "rounds": 2,
+  "sweeps": {
+    "goal_value": [
+      3,
+      4,
+      6,
+      8,
+      12,
+      16
+    ],
+    "other_value": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "min_ask": [
+      2,
+      4,
+      6,
+      10,
+      15,
+      20,
+      25,
+      35
+    ]
+  },
   "rows": [
+    {
+      "label": "bayes(min_ask=25)",
+      "family": "bayes",
+      "kwargs": {
+        "min_ask": 25
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": 35.349333333333334,
+      "lo": 31.209485271971356,
+      "hi": 39.48918139469531,
+      "n": 1500
+    },
+    {
+      "label": "bayes(min_ask=35)",
+      "family": "bayes",
+      "kwargs": {
+        "min_ask": 35
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": 35.072,
+      "lo": 31.08136589657235,
+      "hi": 39.062634103427655,
+      "n": 1500
+    },
+    {
+      "label": "bayes(min_ask=15)",
+      "family": "bayes",
+      "kwargs": {
+        "min_ask": 15
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": 33.876,
+      "lo": 29.789449015005054,
+      "hi": 37.96255098499494,
+      "n": 1500
+    },
+    {
+      "label": "bayes(min_ask=20)",
+      "family": "bayes",
+      "kwargs": {
+        "min_ask": 20
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": 33.214,
+      "lo": 29.064453006041248,
+      "hi": 37.36354699395875,
+      "n": 1500
+    },
     {
       "label": "bayes(min_ask=10)",
       "family": "bayes",
       "kwargs": {
         "min_ask": 10
       },
-      "mean": 20.588666666666665,
-      "lo": 17.10276948131015,
-      "hi": 24.07456385202318,
-      "n": 1500
-    },
-    {
-      "label": "bayes(min_ask=8)",
-      "family": "bayes",
-      "kwargs": {
-        "min_ask": 8
-      },
-      "mean": 20.09,
-      "lo": 16.620551010293276,
-      "hi": 23.559448989706723,
+      "round": 0,
+      "param": "min_ask",
+      "mean": 32.321333333333335,
+      "lo": 28.19630086559107,
+      "hi": 36.4463658010756,
       "n": 1500
     },
     {
@@ -34,9 +106,11 @@
       "kwargs": {
         "min_ask": 6
       },
-      "mean": 19.801333333333332,
-      "lo": 16.36495361085204,
-      "hi": 23.237713055814623,
+      "round": 0,
+      "param": "min_ask",
+      "mean": 28.296,
+      "lo": 24.116039962187934,
+      "hi": 32.475960037812065,
       "n": 1500
     },
     {
@@ -45,9 +119,11 @@
       "kwargs": {
         "min_ask": 4
       },
-      "mean": 17.764,
-      "lo": 14.280214596219988,
-      "hi": 21.24778540378001,
+      "round": 0,
+      "param": "min_ask",
+      "mean": 24.575333333333333,
+      "lo": 20.344472203114385,
+      "hi": 28.80619446355228,
       "n": 1500
     },
     {
@@ -56,633 +132,986 @@
       "kwargs": {
         "min_ask": 2
       },
-      "mean": 17.715333333333334,
-      "lo": 14.210548921365584,
-      "hi": 21.220117745301085,
+      "round": 0,
+      "param": "min_ask",
+      "mean": 19.563333333333333,
+      "lo": 15.260037846836216,
+      "hi": 23.86662881983045,
       "n": 1500
     },
     {
-      "label": "bayes(min_ask=3)",
-      "family": "bayes",
-      "kwargs": {
-        "min_ask": 3
-      },
-      "mean": 17.498666666666665,
-      "lo": 14.029624917547821,
-      "hi": 20.96770841578551,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=12, other_value=4)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 12,
-        "other_value": 4
-      },
-      "mean": 2.5,
-      "lo": -1.650394814101392,
-      "hi": 6.650394814101392,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=8, other_value=4)",
+      "label": "long_suit(goal_value=8, min_ask=20, other_value=4)",
       "family": "long_suit",
       "kwargs": {
         "goal_value": 8,
-        "other_value": 4
+        "other_value": 4,
+        "min_ask": 20
       },
-      "mean": 1.0493333333333332,
-      "lo": -2.0880704169627964,
-      "hi": 4.186737083629463,
+      "round": 0,
+      "param": "min_ask",
+      "mean": 9.762,
+      "lo": 6.068150697736927,
+      "hi": 13.455849302263074,
       "n": 1500
     },
     {
-      "label": "long_suit(goal_value=6, other_value=4)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 6,
-        "other_value": 4
-      },
-      "mean": 0.796,
-      "lo": -2.0172985316096703,
-      "hi": 3.60929853160967,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=12, other_value=3)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 12,
-        "other_value": 3
-      },
-      "mean": -1.4573333333333334,
-      "lo": -5.6610187304976645,
-      "hi": 2.7463520638309973,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=6, other_value=3)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 6,
-        "other_value": 3
-      },
-      "mean": -2.742,
-      "lo": -5.572584327068676,
-      "hi": 0.08858432706867614,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=8, other_value=3)",
+      "label": "long_suit(goal_value=8, min_ask=20, other_value=2)",
       "family": "long_suit",
       "kwargs": {
         "goal_value": 8,
-        "other_value": 3
+        "other_value": 2,
+        "min_ask": 20
       },
-      "mean": -2.896,
-      "lo": -6.09263594245259,
-      "hi": 0.30063594245259084,
+      "round": 1,
+      "param": "other_value",
+      "mean": 9.554666666666666,
+      "lo": 5.828225004420381,
+      "hi": 13.28110832891295,
       "n": 1500
     },
     {
-      "label": "long_suit(goal_value=12, other_value=2)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 12,
-        "other_value": 2
-      },
-      "mean": -4.934,
-      "lo": -9.16280597803974,
-      "hi": -0.7051940219602599,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=12, other_value=5)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 12,
-        "other_value": 5
-      },
-      "mean": -5.578,
-      "lo": -9.32556866536816,
-      "hi": -1.8304313346318422,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=8, other_value=2)",
+      "label": "long_suit(goal_value=8, min_ask=25, other_value=4)",
       "family": "long_suit",
       "kwargs": {
         "goal_value": 8,
-        "other_value": 2
+        "other_value": 4,
+        "min_ask": 25
       },
-      "mean": -5.8533333333333335,
-      "lo": -9.013841011029328,
-      "hi": -2.6928256556373387,
+      "round": 0,
+      "param": "min_ask",
+      "mean": 9.136,
+      "lo": 5.3973487767256945,
+      "hi": 12.874651223274304,
       "n": 1500
     },
     {
-      "label": "long_suit(goal_value=6, other_value=2)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 6,
-        "other_value": 2
-      },
-      "mean": -6.175333333333334,
-      "lo": -8.981614051086915,
-      "hi": -3.369052615579753,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=16, other_value=4)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 16,
-        "other_value": 4
-      },
-      "mean": -8.430666666666667,
-      "lo": -12.883250030513919,
-      "hi": -3.9780833028194156,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=4, other_value=4)",
-      "family": "scarcity",
-      "kwargs": {
-        "goal_value": 4,
-        "other_value": 4
-      },
-      "mean": -9.871333333333334,
-      "lo": -11.14071230423654,
-      "hi": -8.601954362430128,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=4, other_value=4)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 4,
-        "other_value": 4
-      },
-      "mean": -9.878,
-      "lo": -11.148871090102269,
-      "hi": -8.607128909897732,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=3, other_value=4)",
-      "family": "scarcity",
-      "kwargs": {
-        "goal_value": 3,
-        "other_value": 4
-      },
-      "mean": -10.335333333333333,
-      "lo": -11.614429298252817,
-      "hi": -9.056237368413848,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=3, other_value=4)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 3,
-        "other_value": 4
-      },
-      "mean": -10.684,
-      "lo": -11.964993879378925,
-      "hi": -9.403006120621074,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=8, other_value=5)",
+      "label": "long_suit(goal_value=8, min_ask=15, other_value=4)",
       "family": "long_suit",
       "kwargs": {
         "goal_value": 8,
-        "other_value": 5
+        "other_value": 4,
+        "min_ask": 15
       },
-      "mean": -10.717333333333332,
-      "lo": -13.94078049993638,
-      "hi": -7.493886166730284,
+      "round": 0,
+      "param": "min_ask",
+      "mean": 8.599333333333334,
+      "lo": 4.926861555652154,
+      "hi": 12.271805111014514,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=4, other_value=5)",
-      "family": "scarcity",
+      "label": "long_suit(goal_value=8, min_ask=35, other_value=4)",
+      "family": "long_suit",
       "kwargs": {
-        "goal_value": 4,
-        "other_value": 5
+        "goal_value": 8,
+        "other_value": 4,
+        "min_ask": 35
       },
-      "mean": -11.281333333333333,
-      "lo": -14.341781679567276,
-      "hi": -8.220884987099389,
+      "round": 0,
+      "param": "min_ask",
+      "mean": 8.214,
+      "lo": 4.454251144255215,
+      "hi": 11.973748855744786,
       "n": 1500
     },
     {
-      "label": "long_suit(goal_value=6, other_value=5)",
+      "label": "long_suit(goal_value=8, min_ask=20, other_value=3)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 3,
+        "min_ask": 20
+      },
+      "round": 1,
+      "param": "other_value",
+      "mean": 7.994666666666666,
+      "lo": 4.390986908728593,
+      "hi": 11.59834642460474,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=10, other_value=4)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 4,
+        "min_ask": 10
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": 7.158,
+      "lo": 3.5370772030017217,
+      "hi": 10.778922796998279,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=20, other_value=5)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 5,
+        "min_ask": 20
+      },
+      "round": 1,
+      "param": "other_value",
+      "mean": 5.628666666666667,
+      "lo": 1.9104892671101115,
+      "hi": 9.346844066223222,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=6, min_ask=20, other_value=4)",
       "family": "long_suit",
       "kwargs": {
         "goal_value": 6,
-        "other_value": 5
+        "other_value": 4,
+        "min_ask": 20
       },
-      "mean": -11.339333333333334,
-      "lo": -14.473926400470988,
-      "hi": -8.20474026619568,
+      "round": 1,
+      "param": "goal_value",
+      "mean": 5.418666666666667,
+      "lo": 2.2442938926986677,
+      "hi": 8.593039440634666,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=6, other_value=4)",
+      "label": "long_suit(goal_value=12, min_ask=20, other_value=4)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 12,
+        "other_value": 4,
+        "min_ask": 20
+      },
+      "round": 1,
+      "param": "goal_value",
+      "mean": 3.9633333333333334,
+      "lo": -0.11794181340469434,
+      "hi": 8.04460848007136,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=6, other_value=4)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 4,
+        "min_ask": 6
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": 3.937333333333333,
+      "lo": 0.2386426452339605,
+      "hi": 7.636024021432705,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=20, other_value=4)",
       "family": "scarcity",
       "kwargs": {
-        "goal_value": 6,
-        "other_value": 4
+        "goal_value": 4,
+        "other_value": 4,
+        "min_ask": 20
       },
-      "mean": -11.442,
-      "lo": -13.547160592001747,
-      "hi": -9.336839407998253,
+      "round": 1,
+      "param": "min_ask",
+      "mean": 2.6693333333333333,
+      "lo": -0.24560416176351962,
+      "hi": 5.584270828430187,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=3, other_value=5)",
+      "label": "long_suit(goal_value=4, min_ask=20, other_value=4)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 4,
+        "min_ask": 20
+      },
+      "round": 1,
+      "param": "goal_value",
+      "mean": 2.5993333333333335,
+      "lo": -0.3073210632639194,
+      "hi": 5.505987729930586,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=2, other_value=4)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 4,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "other_value",
+      "mean": 2.474,
+      "lo": -1.1967369685395086,
+      "hi": 6.144736968539509,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=4, other_value=4)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 4,
+        "min_ask": 4
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": 2.474,
+      "lo": -1.1967369685395086,
+      "hi": 6.144736968539509,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=15, other_value=4)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 4,
+        "min_ask": 15
+      },
+      "round": 1,
+      "param": "other_value",
+      "mean": 2.206,
+      "lo": -0.681340279682987,
+      "hi": 5.093340279682987,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=2, other_value=5)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 5,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "other_value",
+      "mean": 2.0753333333333335,
+      "lo": -1.6233089396536986,
+      "hi": 5.7739756063203656,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=25, other_value=4)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 4,
+        "min_ask": 25
+      },
+      "round": 1,
+      "param": "min_ask",
+      "mean": 1.7386666666666666,
+      "lo": -1.184328742756649,
+      "hi": 4.661662076089982,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=35, other_value=4)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 4,
+        "min_ask": 35
+      },
+      "round": 1,
+      "param": "min_ask",
+      "mean": 0.836,
+      "lo": -2.0712161146128323,
+      "hi": 3.743216114612832,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=2, other_value=3)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 3,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "goal_value",
+      "mean": 0.8133333333333334,
+      "lo": -2.73464972903947,
+      "hi": 4.361316395706137,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=10, other_value=4)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 4,
+        "min_ask": 10
+      },
+      "round": 1,
+      "param": "min_ask",
+      "mean": 0.6226666666666667,
+      "lo": -2.1784695468848776,
+      "hi": 3.4238028802182106,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=2, other_value=2)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 2,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "other_value",
+      "mean": -0.13466666666666666,
+      "lo": -3.782594700084555,
+      "hi": 3.513261366751222,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=15, other_value=7)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 7,
+        "min_ask": 15
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": -0.238,
+      "lo": -3.764163649604992,
+      "hi": 3.288163649604992,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=20, other_value=7)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 7,
+        "min_ask": 20
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": -0.3293333333333333,
+      "lo": -3.8627369097662982,
+      "hi": 3.2040702430996313,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=20, other_value=6)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 6,
+        "min_ask": 20
+      },
+      "round": 1,
+      "param": "other_value",
+      "mean": -0.3446666666666667,
+      "lo": -3.7123406539217925,
+      "hi": 3.0230073205884587,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=25, other_value=7)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 7,
+        "min_ask": 25
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": -0.7893333333333333,
+      "lo": -4.339483580388108,
+      "hi": 2.7608169137214413,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=15, other_value=5)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 5,
+        "min_ask": 15
+      },
+      "round": 1,
+      "param": "other_value",
+      "mean": -1.156,
+      "lo": -4.35818049613616,
+      "hi": 2.0461804961361603,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=15, other_value=6)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 6,
+        "min_ask": 15
+      },
+      "round": 1,
+      "param": "other_value",
+      "mean": -1.1826666666666668,
+      "lo": -4.502071765433849,
+      "hi": 2.1367384321005147,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=35, other_value=7)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 7,
+        "min_ask": 35
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": -1.3486666666666667,
+      "lo": -4.915520187457717,
+      "hi": 2.218186854124383,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=3, min_ask=15, other_value=7)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 3,
-        "other_value": 5
+        "other_value": 7,
+        "min_ask": 15
       },
-      "mean": -11.798,
-      "lo": -14.846516492068744,
-      "hi": -8.749483507931256,
+      "round": 1,
+      "param": "goal_value",
+      "mean": -1.862,
+      "lo": -5.591488862566583,
+      "hi": 1.8674888625665824,
       "n": 1500
     },
     {
-      "label": "long_suit(goal_value=16, other_value=5)",
+      "label": "long_suit(goal_value=6, min_ask=2, other_value=3)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 6,
+        "other_value": 3,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "goal_value",
+      "mean": -2.0593333333333335,
+      "lo": -4.879002562069227,
+      "hi": 0.7603358954025601,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=16, min_ask=20, other_value=4)",
       "family": "long_suit",
       "kwargs": {
         "goal_value": 16,
-        "other_value": 5
+        "other_value": 4,
+        "min_ask": 20
       },
-      "mean": -12.106,
-      "lo": -16.04663880223206,
-      "hi": -8.16536119776794,
+      "round": 1,
+      "param": "goal_value",
+      "mean": -2.6106666666666665,
+      "lo": -6.970784761252078,
+      "hi": 1.7494514279187459,
       "n": 1500
     },
     {
-      "label": "long_suit(goal_value=16, other_value=3)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 16,
-        "other_value": 3
-      },
-      "mean": -13.052666666666667,
-      "lo": -17.58790206174405,
-      "hi": -8.517431271589285,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=4, other_value=3)",
-      "family": "long_suit",
+      "label": "scarcity(goal_value=4, min_ask=10, other_value=7)",
+      "family": "scarcity",
       "kwargs": {
         "goal_value": 4,
-        "other_value": 3
+        "other_value": 7,
+        "min_ask": 10
       },
-      "mean": -13.569333333333333,
-      "lo": -14.792353673535182,
-      "hi": -12.346312993131484,
+      "round": 0,
+      "param": "min_ask",
+      "mean": -3.0633333333333335,
+      "lo": -6.537352201126657,
+      "hi": 0.41068553445999,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=8, other_value=4)",
-      "family": "scarcity",
+      "label": "long_suit(goal_value=8, min_ask=2, other_value=6)",
+      "family": "long_suit",
       "kwargs": {
         "goal_value": 8,
-        "other_value": 4
+        "other_value": 6,
+        "min_ask": 2
       },
-      "mean": -13.826666666666666,
-      "lo": -16.235782678986403,
-      "hi": -11.417550654346929,
+      "round": 0,
+      "param": "other_value",
+      "mean": -3.1533333333333333,
+      "lo": -6.497900391100581,
+      "hi": 0.19123372443391373,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=4, other_value=3)",
+      "label": "scarcity(goal_value=4, min_ask=15, other_value=2)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 4,
-        "other_value": 3
+        "other_value": 2,
+        "min_ask": 15
       },
-      "mean": -14.018666666666666,
-      "lo": -15.248667062906144,
-      "hi": -12.78866627042719,
+      "round": 1,
+      "param": "other_value",
+      "mean": -3.718,
+      "lo": -5.130995097580719,
+      "hi": -2.3050049024192805,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=6, other_value=5)",
+      "label": "scarcity(goal_value=4, min_ask=15, other_value=3)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 3,
+        "min_ask": 15
+      },
+      "round": 1,
+      "param": "other_value",
+      "mean": -3.7586666666666666,
+      "lo": -5.357123431038142,
+      "hi": -2.1602099022951915,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=6, other_value=4)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 4,
+        "min_ask": 6
+      },
+      "round": 1,
+      "param": "min_ask",
+      "mean": -3.957333333333333,
+      "lo": -6.827055611185238,
+      "hi": -1.0876110554814282,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=20, other_value=7)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 7,
+        "min_ask": 20
+      },
+      "round": 1,
+      "param": "other_value",
+      "mean": -4.566666666666666,
+      "lo": -7.792082864155596,
+      "hi": -1.3412504691777372,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=6, other_value=7)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 7,
+        "min_ask": 6
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": -4.662,
+      "lo": -8.132651527833282,
+      "hi": -1.1913484721667174,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=6, min_ask=15, other_value=7)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 6,
-        "other_value": 5
+        "other_value": 7,
+        "min_ask": 15
       },
-      "mean": -14.252666666666666,
-      "lo": -17.289905665386534,
-      "hi": -11.215427667946798,
+      "round": 1,
+      "param": "goal_value",
+      "mean": -4.746,
+      "lo": -8.035853042781106,
+      "hi": -1.4561469572188939,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=12, other_value=5)",
+      "label": "scarcity(goal_value=4, min_ask=2, other_value=7)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 7,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "other_value",
+      "mean": -4.796666666666667,
+      "lo": -8.27416867151401,
+      "hi": -1.3191646618193236,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=4, other_value=7)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 7,
+        "min_ask": 4
+      },
+      "round": 0,
+      "param": "min_ask",
+      "mean": -4.796666666666667,
+      "lo": -8.27416867151401,
+      "hi": -1.3191646618193236,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=2, other_value=5)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 5,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "other_value",
+      "mean": -4.86,
+      "lo": -8.012658088583189,
+      "hi": -1.7073419114168114,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=3, min_ask=20, other_value=4)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 3,
+        "other_value": 4,
+        "min_ask": 20
+      },
+      "round": 1,
+      "param": "goal_value",
+      "mean": -4.94,
+      "lo": -7.241118337365922,
+      "hi": -2.6388816626340783,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=2, other_value=6)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 6,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "other_value",
+      "mean": -5.441333333333334,
+      "lo": -8.708168015404357,
+      "hi": -2.174498651262309,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=8, min_ask=2, other_value=7)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 7,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "other_value",
+      "mean": -5.978666666666666,
+      "lo": -9.22151994048458,
+      "hi": -2.7358133928487534,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=12, min_ask=2, other_value=3)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 12,
+        "other_value": 3,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "goal_value",
+      "mean": -6.3,
+      "lo": -10.449411261817996,
+      "hi": -2.1505887381820026,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=2, other_value=4)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 4,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "other_value",
+      "mean": -6.3693333333333335,
+      "lo": -9.196919915568595,
+      "hi": -3.5417467510980725,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=4, other_value=4)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 4,
+        "min_ask": 4
+      },
+      "round": 1,
+      "param": "min_ask",
+      "mean": -6.3693333333333335,
+      "lo": -9.196919915568595,
+      "hi": -3.5417467510980725,
+      "n": 1500
+    },
+    {
+      "label": "long_suit(goal_value=4, min_ask=2, other_value=3)",
+      "family": "long_suit",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 3,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "goal_value",
+      "mean": -6.542666666666666,
+      "lo": -8.746982555975206,
+      "hi": -4.3383507773581265,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=8, min_ask=15, other_value=7)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 8,
+        "other_value": 7,
+        "min_ask": 15
+      },
+      "round": 1,
+      "param": "goal_value",
+      "mean": -6.860666666666667,
+      "lo": -10.089443026756742,
+      "hi": -3.631890306576592,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=4, min_ask=2, other_value=3)",
+      "family": "scarcity",
+      "kwargs": {
+        "goal_value": 4,
+        "other_value": 3,
+        "min_ask": 2
+      },
+      "round": 0,
+      "param": "goal_value",
+      "mean": -12.628,
+      "lo": -14.23324655390956,
+      "hi": -11.02275344609044,
+      "n": 1500
+    },
+    {
+      "label": "scarcity(goal_value=12, min_ask=15, other_value=7)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 12,
-        "other_value": 5
+        "other_value": 7,
+        "min_ask": 15
       },
-      "mean": -14.369333333333334,
-      "lo": -18.022467745035023,
-      "hi": -10.716198921631644,
+      "round": 1,
+      "param": "goal_value",
+      "mean": -13.638,
+      "lo": -16.884262641675637,
+      "hi": -10.391737358324361,
       "n": 1500
     },
     {
-      "label": "long_suit(goal_value=3, other_value=3)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 3,
-        "other_value": 3
-      },
-      "mean": -14.486666666666666,
-      "lo": -15.716952654772616,
-      "hi": -13.256380678560717,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=3, other_value=3)",
+      "label": "scarcity(goal_value=3, min_ask=2, other_value=3)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 3,
-        "other_value": 3
+        "other_value": 3,
+        "min_ask": 2
       },
-      "mean": -14.498666666666667,
-      "lo": -15.7287792364671,
-      "hi": -13.268554096866234,
+      "round": 0,
+      "param": "goal_value",
+      "mean": -13.915333333333333,
+      "lo": -14.969449860359017,
+      "hi": -12.861216806307649,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=8, other_value=5)",
-      "family": "scarcity",
-      "kwargs": {
-        "goal_value": 8,
-        "other_value": 5
-      },
-      "mean": -14.951333333333332,
-      "lo": -18.093779259909773,
-      "hi": -11.808887406756893,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=16, other_value=2)",
+      "label": "long_suit(goal_value=3, min_ask=2, other_value=3)",
       "family": "long_suit",
       "kwargs": {
-        "goal_value": 16,
-        "other_value": 2
+        "goal_value": 3,
+        "other_value": 3,
+        "min_ask": 2
       },
-      "mean": -15.362,
-      "lo": -19.895995738393726,
-      "hi": -10.828004261606274,
+      "round": 0,
+      "param": "goal_value",
+      "mean": -13.925333333333333,
+      "lo": -14.980756545343969,
+      "hi": -12.869910121322697,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=12, other_value=4)",
-      "family": "scarcity",
-      "kwargs": {
-        "goal_value": 12,
-        "other_value": 4
-      },
-      "mean": -15.964,
-      "lo": -19.71620143516041,
-      "hi": -12.211798564839592,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=6, other_value=3)",
+      "label": "scarcity(goal_value=6, min_ask=2, other_value=3)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 6,
-        "other_value": 3
+        "other_value": 3,
+        "min_ask": 2
       },
-      "mean": -16.282666666666668,
-      "lo": -18.349826818621754,
-      "hi": -14.215506514711583,
+      "round": 0,
+      "param": "goal_value",
+      "mean": -14.105333333333334,
+      "lo": -16.15708756499543,
+      "hi": -12.05357910167124,
       "n": 1500
     },
     {
-      "label": "long_suit(goal_value=4, other_value=2)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 4,
-        "other_value": 2
-      },
-      "mean": -17.381333333333334,
-      "lo": -18.419574170993997,
-      "hi": -16.34309249567267,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=4, other_value=2)",
+      "label": "scarcity(goal_value=4, min_ask=2, other_value=2)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 4,
-        "other_value": 2
+        "other_value": 2,
+        "min_ask": 2
       },
-      "mean": -18.374666666666666,
-      "lo": -19.370945803418838,
-      "hi": -17.378387529914495,
+      "round": 0,
+      "param": "other_value",
+      "mean": -14.759333333333334,
+      "lo": -16.023948100814568,
+      "hi": -13.4947185658521,
       "n": 1500
     },
     {
-      "label": "long_suit(goal_value=3, other_value=2)",
+      "label": "long_suit(goal_value=16, min_ask=2, other_value=3)",
       "family": "long_suit",
       "kwargs": {
-        "goal_value": 3,
-        "other_value": 2
+        "goal_value": 16,
+        "other_value": 3,
+        "min_ask": 2
       },
-      "mean": -18.42866666666667,
-      "lo": -19.46179812618761,
-      "hi": -17.395535207145727,
+      "round": 0,
+      "param": "goal_value",
+      "mean": -15.848,
+      "lo": -20.388565215732896,
+      "hi": -11.307434784267105,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=8, other_value=3)",
+      "label": "scarcity(goal_value=8, min_ask=2, other_value=3)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 8,
-        "other_value": 3
+        "other_value": 3,
+        "min_ask": 2
       },
-      "mean": -19.033333333333335,
-      "lo": -21.431349587737323,
-      "hi": -16.635317078929347,
+      "round": 0,
+      "param": "goal_value",
+      "mean": -16.652666666666665,
+      "lo": -19.499174486532635,
+      "hi": -13.806158846800695,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=3, other_value=2)",
+      "label": "scarcity(goal_value=16, min_ask=15, other_value=7)",
       "family": "scarcity",
       "kwargs": {
-        "goal_value": 3,
-        "other_value": 2
+        "goal_value": 16,
+        "other_value": 7,
+        "min_ask": 15
       },
-      "mean": -19.198,
-      "lo": -20.186055493753823,
-      "hi": -18.209944506246178,
+      "round": 1,
+      "param": "goal_value",
+      "mean": -21.822,
+      "lo": -25.022710761967378,
+      "hi": -18.62128923803262,
       "n": 1500
     },
     {
-      "label": "scarcity(goal_value=6, other_value=2)",
-      "family": "scarcity",
-      "kwargs": {
-        "goal_value": 6,
-        "other_value": 2
-      },
-      "mean": -20.23,
-      "lo": -22.17094002184424,
-      "hi": -18.289059978155763,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=12, other_value=3)",
+      "label": "scarcity(goal_value=12, min_ask=2, other_value=3)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 12,
-        "other_value": 3
+        "other_value": 3,
+        "min_ask": 2
       },
-      "mean": -20.587333333333333,
-      "lo": -24.3799571295183,
-      "hi": -16.794709537148368,
+      "round": 0,
+      "param": "goal_value",
+      "mean": -26.662,
+      "lo": -30.234382381461266,
+      "hi": -23.089617618538732,
       "n": 1500
     },
     {
-      "label": "long_suit(goal_value=4, other_value=5)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 4,
-        "other_value": 5
-      },
-      "mean": -21.245333333333335,
-      "lo": -23.949722822727136,
-      "hi": -18.540943843939534,
-      "n": 1500
-    },
-    {
-      "label": "long_suit(goal_value=3, other_value=5)",
-      "family": "long_suit",
-      "kwargs": {
-        "goal_value": 3,
-        "other_value": 5
-      },
-      "mean": -21.543333333333333,
-      "lo": -24.265165752786793,
-      "hi": -18.821500913879873,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=8, other_value=2)",
-      "family": "scarcity",
-      "kwargs": {
-        "goal_value": 8,
-        "other_value": 2
-      },
-      "mean": -21.583333333333332,
-      "lo": -23.926017043704228,
-      "hi": -19.240649622962437,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=12, other_value=2)",
-      "family": "scarcity",
-      "kwargs": {
-        "goal_value": 12,
-        "other_value": 2
-      },
-      "mean": -23.398666666666667,
-      "lo": -27.204703792323077,
-      "hi": -19.592629541010258,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=16, other_value=5)",
+      "label": "scarcity(goal_value=16, min_ask=2, other_value=3)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 16,
-        "other_value": 5
+        "other_value": 3,
+        "min_ask": 2
       },
-      "mean": -24.062,
-      "lo": -27.75586160554542,
-      "hi": -20.368138394454583,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=16, other_value=4)",
-      "family": "scarcity",
-      "kwargs": {
-        "goal_value": 16,
-        "other_value": 4
-      },
-      "mean": -29.258,
-      "lo": -33.27597786831092,
-      "hi": -25.24002213168908,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=16, other_value=3)",
-      "family": "scarcity",
-      "kwargs": {
-        "goal_value": 16,
-        "other_value": 3
-      },
-      "mean": -34.89266666666666,
-      "lo": -38.90363051413772,
-      "hi": -30.88170281919561,
-      "n": 1500
-    },
-    {
-      "label": "scarcity(goal_value=16, other_value=2)",
-      "family": "scarcity",
-      "kwargs": {
-        "goal_value": 16,
-        "other_value": 2
-      },
-      "mean": -37.257333333333335,
-      "lo": -41.291921501232274,
-      "hi": -33.2227451654344,
+      "round": 0,
+      "param": "goal_value",
+      "mean": -38.232,
+      "lo": -42.23620016608325,
+      "hi": -34.22779983391675,
       "n": 1500
     }
   ],
   "best": {
     "scarcity": {
-      "label": "scarcity(goal_value=4, other_value=4)",
+      "label": "scarcity(goal_value=4, min_ask=20, other_value=4)",
       "family": "scarcity",
       "kwargs": {
         "goal_value": 4,
-        "other_value": 4
+        "other_value": 4,
+        "min_ask": 20
       },
-      "mean": -9.871333333333334,
-      "lo": -11.14071230423654,
-      "hi": -8.601954362430128,
+      "round": 1,
+      "param": "min_ask",
+      "mean": 2.6693333333333333,
+      "lo": -0.24560416176351962,
+      "hi": 5.584270828430187,
       "n": 1500
     },
     "long_suit": {
-      "label": "long_suit(goal_value=12, other_value=4)",
+      "label": "long_suit(goal_value=8, min_ask=20, other_value=4)",
       "family": "long_suit",
       "kwargs": {
-        "goal_value": 12,
-        "other_value": 4
+        "goal_value": 8,
+        "other_value": 4,
+        "min_ask": 20
       },
-      "mean": 2.5,
-      "lo": -1.650394814101392,
-      "hi": 6.650394814101392,
+      "round": 0,
+      "param": "min_ask",
+      "mean": 9.762,
+      "lo": 6.068150697736927,
+      "hi": 13.455849302263074,
       "n": 1500
     },
     "bayes": {
-      "label": "bayes(min_ask=10)",
+      "label": "bayes(min_ask=25)",
       "family": "bayes",
       "kwargs": {
-        "min_ask": 10
+        "min_ask": 25
       },
-      "mean": 20.588666666666665,
-      "lo": 17.10276948131015,
-      "hi": 24.07456385202318,
+      "round": 0,
+      "param": "min_ask",
+      "mean": 35.349333333333334,
+      "lo": 31.209485271971356,
+      "hi": 39.48918139469531,
       "n": 1500
     }
   }
